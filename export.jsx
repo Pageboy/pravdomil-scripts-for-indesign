@@ -34,7 +34,9 @@ function group(doc) {
 function ungroup(doc) {
   for(var i = 0; i < doc.pages.length; i++) {
     const groups = doc.pages[i].groups
-    if(groups.length) { page.groups.firstItem().ungroup() }
+    if(groups.length) {
+      groups.firstItem().ungroup()
+    }
   }
 }
 
