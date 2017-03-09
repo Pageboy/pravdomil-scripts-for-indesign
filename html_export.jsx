@@ -10,7 +10,7 @@ function main() {
   
   group(doc)
   html_export(doc)
-  ungroup(doc)
+  doc.undo()
 }
 
 function group(doc) {
