@@ -3,7 +3,7 @@ main()
 function main() {
   // no documents open
   if(!app.activeDocument) { return }
-	
+  
   const doc = app.activeDocument
   // document not saved
   if(!doc.fullName) { return }
