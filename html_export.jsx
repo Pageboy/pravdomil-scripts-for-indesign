@@ -8,12 +8,13 @@ function main() {
   // document not saved
   if(!doc.fullName) { return }
   
-  group(doc)
+  const groups = group(doc)
   html_export(doc)
-  doc.undo()
+  undo(doc, groups)
 }
 
 function group(doc) {
+  var groupsCount = 0
   for(var i = 0; i < doc.pages.length; i++) {
     const page = doc.pages[i]
     const items = page.allPageItems
@@ -27,17 +28,14 @@ function group(doc) {
     
     if(group.length > 1) {
       page.groups.add(group)
+      groupsCount++
     }
   }
+  return groupsCount
 }
 
-function ungroup(doc) {
-  for(var i = 0; i < doc.pages.length; i++) {
-    const groups = doc.pages[i].groups
-    if(groups.length) {
-      groups.firstItem().ungroup()
-    }
-  }
+function undo(doc, groups) {
+  for(var i = 0; i < groups; i++) { doc.undo() }
 }
 
 function html_export(doc) {
