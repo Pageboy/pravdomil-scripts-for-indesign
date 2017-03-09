@@ -54,8 +54,19 @@ function html_export(doc) {
   const title = parts[0]
   const filename = (parts.length == 1) ? 'index' : parts.slice(1).join('-')
   
+  const file = new File(folder + '/' + filename + '.html')
   const showDialog = true
-  doc.exportFile(ExportFormat.HTML, new File(folder + '/' + filename + '.html'), showDialog)
+  doc.exportFile(ExportFormat.HTML, file, showDialog)
+  
+  file.open('e')
+  var content = file.read()
+  content = content.replace(
+    '<title>' + filename + '</title>',
+    '<title>' + title + '</title>\r\n\t\t<meta name="viewport" content="width=device-width" />'
+  )
+  file.seek(0)
+  file.write(content)
+  file.close()
 }
 
 function findDomain(path) {
