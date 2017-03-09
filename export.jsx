@@ -51,6 +51,7 @@ function html_export(doc) {
   const basenameWithoutExt = basename.substring(0, basename.lastIndexOf('.'))
   
   const parts = basenameWithoutExt.split('-')
+  const title = parts[0]
   const filename = (parts.length == 1) ? 'index' : parts.slice(1).join('-')
   
   const showDialog = true
