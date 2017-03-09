@@ -19,6 +19,8 @@ function group(doc) {
     const items = page.allPageItems
     const group = []
     
+    if(items.length <= 1) { return }
+    
     for(var i = 0; i < items.length; i++) {
       if(items[i].parent.constructor == Spread) {
         group.push(items[i])
@@ -31,9 +33,8 @@ function group(doc) {
 
 function ungroup(doc) {
   for(var i = 0; i < doc.pages.length; i++) {
-    const page = doc.pages[i]
-    const items = doc.allPageItems
-    page.groups.firstItem().ungroup()
+    const groups = doc.pages[i].groups
+    if(groups.length) { page.groups.firstItem().ungroup() }
   }
 }
 
