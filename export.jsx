@@ -40,11 +40,23 @@ function ungroup(doc) {
 
 function html_export(doc) {
   const basename = doc.fullName.displayName
-	const basenameWithoutExt = basename.substring(0, basename.lastIndexOf('.'))
+  const basenameWithoutExt = basename.substring(0, basename.lastIndexOf('.'))
   
-  const root = new Folder(doc.filePath + '/html')
-  root.create()
+  const parts = basenameWithoutExt.split('-')
+  const filename = (parts.length == 1) ? 'index' : parts.slice(1).join('-')
+  
+  const folder = findDomain(doc.filePath)
+  if(!folder) { alert('No domain folder found') }
   
   const showDialog = true
-	doc.exportFile(ExportFormat.HTML, new File(root + '/' + basenameWithoutExt + '.html'), showDialog)
+  doc.exportFile(ExportFormat.HTML, new File(folder + '/' + filename + '.html'), showDialog)
+}
+
+function findDomain(path) {
+  const files = new Folder(path).getFiles()
+  for(var i = 0; i < files.length; i++) {
+    if(files[i].displayName.match(/\.(cz|com)$/)) {
+      return files[i]
+    }
+  }
 }
