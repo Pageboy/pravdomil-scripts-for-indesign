@@ -19,15 +19,15 @@ function group(doc) {
     const items = page.allPageItems
     const group = []
     
-    if(items.length <= 1) { return }
-    
     for(var i = 0; i < items.length; i++) {
       if(items[i].parent.constructor == Spread) {
         group.push(items[i])
       }
     }
     
-    page.groups.add(group)
+    if(group.length > 1) {
+      page.groups.add(group)
+    }
   }
 }
 
