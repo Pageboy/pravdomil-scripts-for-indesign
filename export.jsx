@@ -41,14 +41,17 @@ function ungroup(doc) {
 }
 
 function html_export(doc) {
+  const folder = findDomain(doc.filePath)
+  if(!folder) {
+    alert('No domain folder found')
+    return
+  }
+  
   const basename = doc.fullName.displayName
   const basenameWithoutExt = basename.substring(0, basename.lastIndexOf('.'))
   
   const parts = basenameWithoutExt.split('-')
   const filename = (parts.length == 1) ? 'index' : parts.slice(1).join('-')
-  
-  const folder = findDomain(doc.filePath)
-  if(!folder) { alert('No domain folder found') }
   
   const showDialog = true
   doc.exportFile(ExportFormat.HTML, new File(folder + '/' + filename + '.html'), showDialog)
