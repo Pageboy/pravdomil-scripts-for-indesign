@@ -21,8 +21,13 @@ function group(doc) {
     const group = []
     
     for(var i = 0; i < items.length; i++) {
-      if(items[i].parent.constructor == Spread) {
-        group.push(items[i])
+      var item = items[i]
+      if(item.parent.constructor == Spread) {
+        if(item.locked) {
+          item.locked = false
+          undoCount++
+        }
+        group.push(item)
       }
     }
     
