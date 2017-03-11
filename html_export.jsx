@@ -14,7 +14,7 @@ function main() {
 }
 
 function group(doc) {
-  var groupsCount = 0
+  var undoCount = 0
   for(var i = 0; i < doc.pages.length; i++) {
     const page = doc.pages[i]
     const items = page.allPageItems
@@ -28,10 +28,10 @@ function group(doc) {
     
     if(group.length > 1) {
       page.groups.add(group)
-      groupsCount++
+      undoCount++
     }
   }
-  return groupsCount
+  return undoCount
 }
 
 function undo(doc, groups) {
