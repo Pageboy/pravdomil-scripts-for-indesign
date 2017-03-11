@@ -16,9 +16,9 @@ function main() {
 function group(doc) {
   var undoCount = 0
   for(var p = 0; p < doc.pages.length; p++) {
-    const page = doc.pages[p]
-    const items = page.allPageItems
-    const group = []
+    var page = doc.pages[p]
+    var items = page.allPageItems
+    var group = []
     
     for(var i = 0; i < items.length; i++) {
       var item = items[i]
