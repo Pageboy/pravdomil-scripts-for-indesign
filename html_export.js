@@ -58,7 +58,7 @@ function html_export(doc) {
   const filename = (parts.length == 1) ? 'index' : parts.slice(1).join('-')
   
   const file = new File(folder + '/' + filename + '.html')
-  const showDialog = true
+  const showDialog = false
   doc.exportFile(ExportFormat.HTML, file, showDialog)
   
   file.open('e')
