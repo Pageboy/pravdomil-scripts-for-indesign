@@ -51,7 +51,7 @@ conformFile = (file, title, filename) ->
   file.seek 0
   file.write content
   file.close()
-  
+  return
 
 findDomain = (path) ->
   for file in new Folder(path).getFiles()

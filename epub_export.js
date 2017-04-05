@@ -47,7 +47,7 @@
     content = content.replace('style="', 'style="margin: auto; position: relative; ');
     file.seek(0);
     file.write(content);
-    return file.close();
+    file.close();
   };
 
   findDomain = function(path) {
