@@ -46,7 +46,7 @@ html_export = (doc) ->
   parts = basenameWithoutExt.split '-'
   
   title = parts[0]
-  filename = if parts.length == 1 then 'index' else parts.slice(1).join '-'
+  filename = if parts.length == 1 then 'index' else parts.slice(1).join('-').trim()
   
   file = new File folder + '/' + filename + '.html'
   
@@ -66,5 +66,8 @@ findDomain = (path) ->
     if file.displayName.match(/\.(cz|com)$/) then return file
   
   return
+
+String::trim = ->
+  @replace /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, ''
 
 main()
