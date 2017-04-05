@@ -15,7 +15,7 @@
   };
 
   epub_export = function(doc) {
-    var basename, basenameWithoutExt, file, filename, folder, i, parts, showDialog, title;
+    var basename, basenameWithoutExt, file, filename, filenameWithNumber, folder, i, parts, showDialog, title;
     folder = findDomain(doc.filePath);
     if (!folder) {
       return alert('No domain folder found');
@@ -31,11 +31,12 @@
     i = 0;
     while (true) {
       i++;
-      file = new File(folder + '/' + filename + '-' + i + '.html');
+      filenameWithNumber = filename + '-' + i;
+      file = new File(folder + '/' + filenameWithNumber + '.html');
       if (file.exists === false) {
         break;
       }
-      conformFile(file, title, filename);
+      conformFile(file, title, filenameWithNumber);
     }
   };
 

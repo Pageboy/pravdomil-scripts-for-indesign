@@ -31,9 +31,10 @@ epub_export = (doc) ->
   i = 0
   while true
     i++
-    file = new File folder + '/' + filename + '-' + i + '.html'
+    filenameWithNumber = filename + '-' + i
+    file = new File folder + '/' + filenameWithNumber + '.html'
     if file.exists is false then break
-    conformFile file, title, filename
+    conformFile file, title, filenameWithNumber
   
   return
 
