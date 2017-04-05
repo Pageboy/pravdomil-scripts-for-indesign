@@ -45,7 +45,7 @@ html_export = (doc) ->
   basenameWithoutExt = basename.substring 0, basename.lastIndexOf '.'
   parts = basenameWithoutExt.split '-'
   
-  title = parts[0]
+  title = parts[0].trim()
   filename = if parts.length == 1 then 'index' else parts.slice(1).join('-').trim()
   
   file = new File folder + '/' + filename + '.html'

@@ -59,7 +59,7 @@
     basename = doc.fullName.displayName;
     basenameWithoutExt = basename.substring(0, basename.lastIndexOf('.'));
     parts = basenameWithoutExt.split('-');
-    title = parts[0];
+    title = parts[0].trim();
     filename = parts.length === 1 ? 'index' : parts.slice(1).join('-').trim();
     file = new File(folder + '/' + filename + '.html');
     doc.exportFile(ExportFormat.HTML, file, (showDialog = false));
