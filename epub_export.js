@@ -15,7 +15,7 @@
   };
 
   epub_export = function(doc) {
-    var basename, basenameWithoutExt, file, filename, filenameWithNumber, folder, i, parts, showDialog, title;
+    var appendix, basename, basenameWithoutExt, date, file, fileWithNumber, filename, folder, i, openLocation, parts, showDialog, title;
     folder = findDomain(doc.filePath);
     if (!folder) {
       return alert('No domain folder found');
@@ -25,26 +25,36 @@
     parts = basenameWithoutExt.split('-');
     title = parts[0].trim();
     filename = parts.length === 1 ? 'index' : parts.slice(1).join('-').trim();
+    date = new Date();
+    date = date.getFullYear().toString().substr(2) + date.getMonth().toString().padStart(2, '0') + date.getDate().toString().padStart(2, '0');
+    folder = new Folder(folder + '/' + date);
+    if (folder.exists === false) {
+      folder.create();
+    }
     file = new File(folder + '/' + filename + '.html');
     doc.exportFile(ExportFormat.HTMLFXL, file, (showDialog = false));
     conformFile(file, title, filename);
     i = 0;
     while (true) {
       i++;
-      filenameWithNumber = filename + '-' + i;
-      file = new File(folder + '/' + filenameWithNumber + '.html');
-      if (file.exists === false) {
+      fileWithNumber = new File(folder + '/' + filename + '-' + i + '.html');
+      if (fileWithNumber.exists === false) {
         break;
       }
-      conformFile(file, title, filenameWithNumber);
+      conformFile(fileWithNumber, title, filename + '-' + i);
     }
+    appendix = app.activeWindow.activePage.name - 1;
+    appendix = !appendix ? '' : '-' + appendix;
+    file = new File(folder + '/' + filename + appendix + '.html');
+    openLocation = 'tell application "System Events" to open location "file://' + file.relativeURI + '"';
+    app.doScript(openLocation, ScriptLanguage.applescriptLanguage);
   };
 
   conformFile = function(file, title, filename) {
     var content;
     file.open('e');
     content = file.read();
-    content = content.replace('<title>' + filename + '</title>', '<title>' + title + '</title> <meta name="viewport" content="width=device-width" /> <script>window.top.isPreviewFile = function() { return {} }</script> <script>window.top.shouldNavigate = function() { return true }</script>');
+    content = content.replace('<title>' + filename + '</title>', '<title>' + title + '</title> <meta name="viewport" content="width=device-width" /> <script>window.top.isPreviewFile = function() { return {} }</script> <script>window.top.shouldNavigate = function() { return true }</script> <script> function press(innerText) { var butons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < butons.length; i++) { var button = butons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("MouseEvents"); evt.initEvent("mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>');
     content = content.replace('style="', 'style="margin: auto; position: relative; ');
     file.seek(0);
     file.write(content);
@@ -64,6 +74,20 @@
 
   String.prototype.trim = function() {
     return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+  };
+
+  String.prototype.padStart = function(targetLength, padString) {
+    targetLength = targetLength >> 0;
+    padString = String(padString || ' ');
+    if (this.length > targetLength) {
+      return String(this);
+    } else {
+      targetLength = targetLength - this.length;
+      if (targetLength > padString.length) {
+        padString += padString.repeat(targetLength / padString.length);
+      }
+      return padString.slice(0, targetLength) + String(this);
+    }
   };
 
   main();
