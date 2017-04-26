@@ -1,10 +1,18 @@
-function nudge(objects, deltaX, deltaY) {
+function nudge(arg) {
+  var objects = app.activeDocument.selection
+  var deltaX = arg[0]
+  var deltaY = arg[1]
+  
   for(var i = 0; i < objects.length; i++) {
     apply(objects[i], deltaX, deltaY)
   }
 }
 
-function resize(objects, deltaX, deltaY) {
+function resize(arg) {
+  var objects = app.activeDocument.selection
+  var deltaX = arg[0]
+  var deltaY = arg[1]
+  
   for(var i = 0; i < objects.length; i++) {
     apply(objects[i], deltaX, deltaY, true)
   }

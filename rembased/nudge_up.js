@@ -1,2 +1,2 @@
 #include "lib.js"
-nudge(app.activeDocument.selection, 0, -.5)
+app.doScript(nudge, ScriptLanguage.JAVASCRIPT, [0, -.5], UndoModes.ENTIRE_SCRIPT, "Nudge")

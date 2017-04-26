@@ -1,2 +1,2 @@
 #include "lib.js"
-resize(app.activeDocument.selection, 0, -.5)
+app.doScript(resize, ScriptLanguage.JAVASCRIPT, [0, -.5], UndoModes.ENTIRE_SCRIPT, "Resize")
