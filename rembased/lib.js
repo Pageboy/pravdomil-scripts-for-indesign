@@ -32,6 +32,15 @@ function apply(object, deltaX, deltaY, resize) {
     bounds[0] += deltaY * 16
   }
   
+  object.move([bounds[1], bounds[0]])
   
-  object.visibleBounds = bounds
+  if(resize) {
+    var width = bounds[3] - bounds[1]
+    var height = bounds[2] - bounds[0]
+    object.resize(
+      CoordinateSpaces.INNER_COORDINATES, AnchorPoint.TOP_LEFT_ANCHOR,
+      ResizeMethods.REPLACING_CURRENT_DIMENSIONS_WITH,
+      [width, height]
+    )
+  }
 }
