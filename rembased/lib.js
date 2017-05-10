@@ -26,10 +26,6 @@ function apply(object, deltaX, deltaY, resize) {
     bounds[i] = Math.round(bounds[i] / 8) * 8
   }
   
-  if(object.visibleBounds[0] + object.strokeWeight == object.visibleBounds[2]) {
-    bounds[2] = bounds[0] + object.strokeWeight
-  }
-  
   if(deltaX) {
     if(!resize) { bounds[1] += deltaX * 16 }
     bounds[3] += deltaX * 16
