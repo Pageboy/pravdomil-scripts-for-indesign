@@ -22,9 +22,10 @@ function apply(object, deltaX, deltaY, resize) {
   // [y1, x1, y2, x2]
   var bounds = object.geometricBounds
   
-  for(var i = 0; i < bounds.length; i++) {
-    bounds[i] = Math.round(bounds[i] / 8) * 8
-  }
+  bounds[0] = Math.round(bounds[0] / 8) * 8
+  bounds[1] = Math.round(bounds[1] / 8) * 8
+  bounds[2] = Math.round(bounds[2] / 8) * 8
+  bounds[3] = Math.round(bounds[3] / 8) * 8
   
   if(deltaX) {
     if(!resize) { bounds[1] += deltaX * 16 }
