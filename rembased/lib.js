@@ -24,8 +24,6 @@ function apply(object, deltaX, deltaY, resize) {
   
   bounds[0] = Math.round(bounds[0] / 8) * 8
   bounds[1] = Math.round(bounds[1] / 8) * 8
-  bounds[2] = Math.round(bounds[2] / 8 + deltaY) * 8
-  bounds[3] = Math.round(bounds[3] / 8 + deltaX) * 8
   
   if(!resize) {
     bounds[1] += deltaX * 16
@@ -35,6 +33,9 @@ function apply(object, deltaX, deltaY, resize) {
   object.move([bounds[1], bounds[0]])
   
   if(resize) {
+    bounds[2] = Math.round(bounds[2] / 8 + deltaY) * 8
+    bounds[3] = Math.round(bounds[3] / 8 + deltaX) * 8
+    
     var width = bounds[3] - bounds[1]
     var height = bounds[2] - bounds[0]
     object.resize(
