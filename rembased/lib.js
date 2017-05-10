@@ -22,19 +22,18 @@ function apply(object, deltaX, deltaY, resize) {
   // [y1, x1, y2, x2]
   var bounds = object.geometricBounds
   
-  bounds[0] = Math.round(bounds[0] / 8) * 8
-  bounds[1] = Math.round(bounds[1] / 8) * 8
-  
   if(!resize) {
-    bounds[1] += deltaX * 16
-    bounds[0] += deltaY * 16
+    bounds[0] = Math.round(bounds[0] / 8 + deltaY * 2) * 8
+    bounds[1] = Math.round(bounds[1] / 8 + deltaX * 2) * 8
+    
+    object.move([bounds[1], bounds[0]])
   }
-  
-  object.move([bounds[1], bounds[0]])
-  
-  if(resize) {
-    bounds[2] = Math.round(bounds[2] / 8 + deltaY) * 8
-    bounds[3] = Math.round(bounds[3] / 8 + deltaX) * 8
+  else {
+    bounds[0] = Math.round(bounds[0] / 8) * 8
+    bounds[1] = Math.round(bounds[1] / 8) * 8
+    bounds[2] = Math.round(bounds[2] / 8 + deltaY * 2) * 8
+    bounds[3] = Math.round(bounds[3] / 8 + deltaX * 2) * 8
+    object.move([bounds[1], bounds[0]])
     
     var width = bounds[3] - bounds[1]
     var height = bounds[2] - bounds[0]
