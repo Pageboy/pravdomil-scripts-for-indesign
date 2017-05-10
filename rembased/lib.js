@@ -27,15 +27,13 @@ function apply(object, deltaX, deltaY, resize) {
   bounds[2] = Math.round(bounds[2] / 8) * 8
   bounds[3] = Math.round(bounds[3] / 8) * 8
   
-  if(deltaX) {
-    if(!resize) { bounds[1] += deltaX * 16 }
-    bounds[3] += deltaX * 16
+  if(!resize) {
+    bounds[1] += deltaX * 16
+    bounds[0] += deltaY * 16
   }
+  bounds[3] += deltaX * 16
+  bounds[2] += deltaY * 16
   
-  if(deltaY) {
-    if(!resize) { bounds[0] += deltaY * 16 }
-    bounds[2] += deltaY * 16
-  }
   
   object.visibleBounds = bounds
 }
