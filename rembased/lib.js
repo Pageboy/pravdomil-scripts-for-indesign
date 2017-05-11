@@ -22,25 +22,15 @@ function apply(object, deltaX, deltaY, resize) {
   // [y1, x1, y2, x2]
   var bounds = object.geometricBounds
   
-  if(!resize) {
-    bounds[0] = Math.round(bounds[0] / 8 + deltaY * 2) * 8
-    bounds[1] = Math.round(bounds[1] / 8 + deltaX * 2) * 8
-    
-    object.move([bounds[1], bounds[0]])
-  }
-  else {
-    bounds[0] = Math.round(bounds[0] / 8) * 8
-    bounds[1] = Math.round(bounds[1] / 8) * 8
-    bounds[2] = Math.round(bounds[2] / 8 + deltaY * 2) * 8
-    bounds[3] = Math.round(bounds[3] / 8 + deltaX * 2) * 8
-    object.move([bounds[1], bounds[0]])
-    
-    var width = bounds[3] - bounds[1]
-    var height = bounds[2] - bounds[0]
-    object.resize(
-      CoordinateSpaces.INNER_COORDINATES, AnchorPoint.TOP_LEFT_ANCHOR,
-      ResizeMethods.REPLACING_CURRENT_DIMENSIONS_WITH,
-      [width, height]
-    )
-  }
+  bounds[0] = Math.round(bounds[0] / 8 + (resize ? 0 : deltaY * 2)) * 8
+  bounds[1] = Math.round(bounds[1] / 8 + (resize ? 0 : deltaX * 2)) * 8
+  bounds[2] = Math.round(bounds[2] / 8 + deltaY * 2) * 8
+  bounds[3] = Math.round(bounds[3] / 8 + deltaX * 2) * 8
+  
+  object.move([bounds[1], bounds[0]])
+  object.resize(
+    CoordinateSpaces.INNER_COORDINATES, AnchorPoint.TOP_LEFT_ANCHOR,
+    ResizeMethods.REPLACING_CURRENT_DIMENSIONS_WITH,
+    [bounds[3] - bounds[1], bounds[2] - bounds[0]]
+  )
 }
