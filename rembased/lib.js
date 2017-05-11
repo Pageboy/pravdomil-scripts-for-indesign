@@ -28,9 +28,12 @@ function apply(object, deltaX, deltaY, resize) {
   bounds[3] = Math.round(bounds[3] / 8 + deltaX * 2) * 8
   
   object.move([bounds[1], bounds[0]])
+  
+  var width = Math.max(bounds[3] - bounds[1], 8)
+  var height = Math.max(bounds[2] - bounds[0], 8)
   object.resize(
     CoordinateSpaces.INNER_COORDINATES, AnchorPoint.TOP_LEFT_ANCHOR,
     ResizeMethods.REPLACING_CURRENT_DIMENSIONS_WITH,
-    [bounds[3] - bounds[1], bounds[2] - bounds[0]]
+    [width, height]
   )
 }
