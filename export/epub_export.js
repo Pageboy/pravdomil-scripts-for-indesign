@@ -44,7 +44,7 @@ function epub_export(doc) {
   var currentPage = app.activeWindow.activePage.name - 1
   var file = new File(folder + '/' + filename + (currentPage ? '-' + currentPage : '') + '.html')
   
-  openLocation = 'tell application "System Events" to open location "file://' + file.relativeURI + '"'
+  var openLocation = 'tell application "System Events" to open location "file://' + file.relativeURI + '"'
   app.doScript(openLocation, ScriptLanguage.applescriptLanguage)
 }
 
