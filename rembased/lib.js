@@ -20,7 +20,7 @@ function resize(arg) {
 
 function apply(object, deltaX, deltaY, resize) {
   // [y1, x1, y2, x2]
-  var bounds = object.geometricBounds
+  var bounds = object.visibleBounds
   
   bounds[0] = Math.round(bounds[0] / 8 + (resize ? 0 : deltaY * 2)) * 8
   bounds[1] = Math.round(bounds[1] / 8 + (resize ? 0 : deltaX * 2)) * 8
