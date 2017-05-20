@@ -19,7 +19,7 @@ function optimalize_file(doc, file, opt, current) {
   current.open('e')
   
   var content = current.read()
-  var head = '<title>' + doc.fullName.nameWithoutExt() + '</title>' +
+  var head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
     '\t\t<meta name="viewport" content="width=device-width" />\n' +
     '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +
     '\t\t<script>window.top.shouldNavigate = function() { return true }</script>\n' +
