@@ -20,9 +20,18 @@ function epub_export(doc) {
     file = new File(file.parent + '/' + versionString() + '/' + file.name)
   }
   
+  var exportPref = doc.htmlFXLExportPreferences
+  if(opt.currentPage) {
+    exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_PAGE_RANGE
+    exportPref.epubPageRange = app.activeWindow.activePage.name
+  }
+  else {
+    exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_ALL_PAGES
+  }
+  
   doc.exportFile(ExportFormat.HTMLFXL, file, true)
   
-  open_page(file, app.activeWindow.activePage.name)
+  open_page(file, opt.currentPage ? 1 : app.activeWindow.activePage.name)
 }
 
 function optimalize_export(doc, file, opt) {
