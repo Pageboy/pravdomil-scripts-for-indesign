@@ -3,7 +3,7 @@
 main()
 
 function main() {
-  if(!app.activeDocument) { return }
+  if(!app.documents.length) { return }
   
   var doc = app.activeDocument
   
