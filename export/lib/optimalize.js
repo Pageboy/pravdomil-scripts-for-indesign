@@ -1,15 +1,20 @@
 function optimalize_html(doc, file, opt) {
-  optimalize_file(doc, file, opt)
+  if(!opt.keepFontFiles) {
+    var fontFile = new File(file.parent + '/' + file.nameWithoutExt() + '-web-resources/script/FontData.js')
+    if(fontFile.exists) { fontFile.remove() }
+  }
+  
+  optimalize_file(doc, file, opt, file)
   
   if(opt.currentPage) { return }
   
   for(var i = 1; i < doc.pages.length; i++) {
     var f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html')
-    optimalize_file(doc, f, opt)
+    optimalize_file(doc, f, opt, file)
   }
 }
 
-function optimalize_file(doc, file, opt) {
+function optimalize_file(doc, file, opt, masterFile) {
   file.lineFeed = 'Unix'
   file.open('e')
   
@@ -23,6 +28,10 @@ function optimalize_file(doc, file, opt) {
   
   content = content.replace('<title>' + file.nameWithoutExt() + '</title>', head)
   content = content.replace('style="', 'style="margin: auto; position: relative;')
+  
+  if(!opt.keepFontFiles) {
+    content = content.replace('<script src="' + masterFile.nameWithoutExt() + '-web-resources/script/FontData.js" type="text/javascript"></script>', '')
+  }
   
   file.seek(0)
   file.write(content)
