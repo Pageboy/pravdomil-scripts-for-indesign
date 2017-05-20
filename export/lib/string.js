@@ -5,19 +5,6 @@ function versionString() {
     + date.getDate().toString().padStart(2, '0')
 }
 
-function findExportFolder(path) {
-  var ref = new Folder(path).getFiles()
-  
-  for(var j = 0; j < ref.length; j++) {
-    var file = ref[j]
-    if(file.displayName.match(/\.(cz|com)$/)) {
-      return file
-    }
-  }
-  
-  return path + '/html'
-}
-
 String.prototype.trim = function() { return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '') }
 
 String.prototype.padStart = function(targetLength, padString) {

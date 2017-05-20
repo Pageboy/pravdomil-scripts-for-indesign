@@ -1,4 +1,4 @@
-#include "lib.js"
+#include "lib/string.js"
 
 main()
 
