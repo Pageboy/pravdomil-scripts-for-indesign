@@ -6,11 +6,11 @@ function optimalize_html(doc, file, opt) {
   
   optimalize_file(doc, file, opt, file)
   
-  if(opt.currentPage) { return }
-  
-  for(var i = 1; i < doc.pages.length; i++) {
-    var f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html')
-    optimalize_file(doc, f, opt, file)
+  if(!opt.currentPage) {
+    for(var i = 1; i < doc.pages.length; i++) {
+      var f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html')
+      optimalize_file(doc, f, opt, file)
+    }
   }
 }
 
