@@ -7,14 +7,7 @@ main()
 function main() {
   if(!app.documents.length) { return }
   
-  var doc = app.activeDocument
-  
-  if(!doc.saved) {
-    alert('Save document first')
-    return
-  }
-  
-  epub_export(doc)
+  epub_export(app.activeDocument)
 }
 
 function epub_export(doc) {

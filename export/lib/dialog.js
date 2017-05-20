@@ -12,7 +12,7 @@ function options_dialog(doc) {
   
   var browse = group.add('button', undefined, 'Browse')
   browse.onClick = function() {
-    var path = doc.filePath.saveDlg()
+    var path = doc.saved ? doc.filePath.saveDlg() : File.openDialog()
     if(path) { outputPath.text = path }
   }
   
