@@ -7,7 +7,10 @@ function main() {
   
   var doc = app.activeDocument
   
-  if(!doc.fullName) { return }
+  if(!doc.saved) {
+    alert('Save document first')
+    return
+  }
   
   epub_export(doc)
 }
