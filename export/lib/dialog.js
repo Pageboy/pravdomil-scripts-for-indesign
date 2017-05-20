@@ -35,8 +35,8 @@ function options_dialog(doc) {
   
   if(dialog.show() == 1) {
     opt.currentPage = currentPage.value
+    opt.mergePages = mergePages.value
     opt.versioning = versioning.value
-    opt.separatePages = separatePages.value
     opt.keepFontFiles = keepFontFiles.value
     
     var path

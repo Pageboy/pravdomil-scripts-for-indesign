@@ -35,5 +35,5 @@ function epub_export(doc) {
   
   optimalize_html(doc, file, opt)
   
-  open_page(file, opt.currentPage ? 1 : app.activeWindow.activePage.name)
+  open_page(file, opt.currentPage || opt.mergePages ? 1 : app.activeWindow.activePage.name)
 }
