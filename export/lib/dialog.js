@@ -5,18 +5,6 @@ function options_dialog(doc) {
   dialog.alignChildren = 'center'
   
   var group = dialog.add('group')
-  group.add('statictext', undefined, 'Output File')
-  var outputPath = group.add('edittext', undefined, 'html_export/index.html')
-  outputPath.characters = 20
-  outputPath.text = opt.outputPath || ''
-  
-  var browse = group.add('button', undefined, 'Browse')
-  browse.onClick = function() {
-    var path = doc.saved ? doc.filePath.saveDlg() : File.openDialog()
-    if(path) { outputPath.text = path }
-  }
-  
-  var group = dialog.add('group')
   group.alignChildren = 'left'
   group.orientation = 'column'
   
@@ -35,10 +23,24 @@ function options_dialog(doc) {
   group.add('button', undefined, 'OK')
   
   if(dialog.show() == 1) {
-    opt.outputPath = outputPath.text
     opt.versioning = versioning.value
     opt.separatePages = separatePages.value
     opt.keepFontFiles = keepFontFiles.value
+    
+    var path
+    var outputFile = new File(opt.outputFile)
+    if(outputFile.exists) {
+      path = outputFile.saveDlg()
+    }
+    else if(doc.saved) {
+      path = doc.fullName.parent.saveDlg()
+    }
+    else {
+      path = File.openDialog()
+    }
+    if(!path) { return }
+    
+    opt.outputFile = path
     save_options(doc, opt)
     return opt
   }
