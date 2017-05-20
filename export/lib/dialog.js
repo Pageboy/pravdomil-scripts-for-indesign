@@ -1,7 +1,7 @@
 function options_dialog(doc) {  
   var opt = get_options(doc)
   
-  var dialog = new Window('dialog', 'Export to HTML')
+  var dialog = new Window('dialog', 'Pravdomil Export to HTML')
   dialog.alignChildren = 'center'
   
   var group = dialog.add('group')
