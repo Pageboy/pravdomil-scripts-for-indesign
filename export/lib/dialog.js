@@ -12,14 +12,18 @@ function options_dialog(doc) {
   currentPage.value = opt.currentPage
   
   var group = dialog.add('panel')
+  group.orientation = 'row'
+  var mergePages = group.add('radiobutton', undefined, 'Merge Pages')
+  mergePages.value = opt.mergePages
+  var splitPages = group.add('radiobutton', undefined, 'Split Pages')
+  splitPages.value = !opt.mergePages
+  
+  var group = dialog.add('panel')
   group.alignChildren = 'left'
   group.orientation = 'column'
   
   var versioning = group.add('checkbox', undefined, 'Versioning')
   versioning.value = opt.versioning
-  
-  var separatePages = group.add('checkbox', undefined, 'Pages to Separate Files')
-  separatePages.value = opt.separatePages
   
   var keepFontFiles = group.add('checkbox', undefined, 'Keep Font Files')
   keepFontFiles.value = opt.keepFontFiles
@@ -58,6 +62,7 @@ function get_options(doc) {
   var label = doc.extractLabel('pravdomil_html_export')
   var opt = myJSONparse(label)
   if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
+  if(opt.mergePages === undefined) { opt.mergePages = true }
   return opt
 }
 
