@@ -46,7 +46,9 @@ function options_dialog(doc) {
 
 function get_options(doc) {
   var label = doc.extractLabel('pravdomil_html_export')
-  return myJSONparse(label)
+  var opt = myJSONparse(label)
+  if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
+  return opt
 }
 
 function save_options(doc, opt) {
