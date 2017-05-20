@@ -16,7 +16,9 @@ function myJSONparse(string) {
 function myJSONstringify(obj) {
   var string = ''
   for(var key in obj) {
-    string += key + '+' + obj[key] + '++'
+    var value = obj[key]
+    if(!value) { value = '' }
+    string += key + '+' + value + '++'
   }
   
   return string
