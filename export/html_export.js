@@ -1,4 +1,5 @@
 #include "lib/string.js"
+#include "lib/myJSON.js"
 
 main()
 
