@@ -37,7 +37,7 @@ function options_dialog(doc) {
     
     var path
     var outputFile = new File(opt.outputFile)
-    if(outputFile.exists) {
+    if(outputFile.parent.exists) {
       path = outputFile.saveDlg()
     }
     else if(doc.saved) {
