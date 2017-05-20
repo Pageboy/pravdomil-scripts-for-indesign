@@ -7,7 +7,7 @@ function options_dialog(doc) {
   var group = dialog.add('panel')
   group.orientation = 'row'
   var allPages = group.add('radiobutton', undefined, 'All Pages')
-  allPages.value = opt.allPages
+  allPages.value = !opt.currentPage
   var currentPage = group.add('radiobutton', undefined, 'Current Page')
   currentPage.value = opt.currentPage
   
@@ -30,7 +30,6 @@ function options_dialog(doc) {
   group.add('button', undefined, 'OK')
   
   if(dialog.show() == 1) {
-    opt.allPages = allPages.value
     opt.currentPage = currentPage.value
     opt.versioning = versioning.value
     opt.separatePages = separatePages.value
@@ -59,7 +58,6 @@ function get_options(doc) {
   var label = doc.extractLabel('pravdomil_html_export')
   var opt = myJSONparse(label)
   if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
-  if(opt.allPages === undefined) { opt.allPages = true }
   return opt
 }
 
