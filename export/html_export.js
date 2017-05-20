@@ -1,5 +1,6 @@
 #include "lib/string.js"
 #include "lib/myJSON.js"
+#include "lib/dialog.js"
 
 main()
 
@@ -17,6 +18,10 @@ function main() {
 }
 
 function epub_export(doc) {
+  var opt = options_dialog(doc)
+  if(!opt) { return }
+  
+  return
   var folder = findExportFolder(doc.filePath)
   
   var basename = doc.fullName.displayName
