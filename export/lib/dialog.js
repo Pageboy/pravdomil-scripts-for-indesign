@@ -51,8 +51,11 @@ function options_dialog(doc) {
       path = File.openDialog()
     }
     if(!path) { return }
+    else {
+      if(path.name.substr(-5) !== '.html') { path += '.html' }
+      opt.outputFile = path
+    }
     
-    opt.outputFile = path
     save_options(doc, opt)
     return opt
   }
