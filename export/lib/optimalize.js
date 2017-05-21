@@ -7,11 +7,38 @@ function optimalize_html(doc, file, opt) {
   optimalize_file(doc, file, opt, file)
   
   if(!opt.currentPage) {
+    if(opt.mergePages) {
+      merge_file(doc, file, opt, file)
+    }
+    
     for(var i = 1; i < doc.pages.length; i++) {
       var f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html')
-      optimalize_file(doc, file, opt, f)
+      opt.mergePages ? merge_file(doc, file, opt, f) : optimalize_file(doc, file, opt, f)
     }
   }
+}
+
+function merge_file(doc, file, opt, current) {
+  current.lineFeed = 'Unix'
+  current.open('r')
+  
+  var content = current.read()
+  var start = content.indexOf('<body')
+  var end = content.lastIndexOf('</body>')
+  var html = '<div' + content.substr(start + 5, end - start - 5) + '</div>'
+  
+  if(file == current) {
+    file.lineFeed = 'Unix'
+    file.open('e')
+    file.seek(start)
+    file.write('<body onload="RegisterInteractiveHandlers();">')
+  }
+  else {
+    html = html.replace('style="', 'style="margin: auto; position: relative;')
+    current.remove()
+  }
+  
+  file.write(html)
 }
 
 function optimalize_file(doc, file, opt, current) {
