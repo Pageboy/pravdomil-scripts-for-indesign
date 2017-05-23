@@ -41,11 +41,11 @@ function options_dialog(doc) {
     
     var path
     var outputFile = new File(opt.outputFile)
-    if(outputFile.parent.exists) {
+    if(opt.outputFile && outputFile.parent.exists) {
       path = outputFile.saveDlg()
     }
     else if(doc.saved) {
-      path = doc.fullName.parent.saveDlg()
+      path = new File(doc.fullName.fullName.replace(/\.indd$/, '.html')).saveDlg()
     }
     else {
       path = File.openDialog()
