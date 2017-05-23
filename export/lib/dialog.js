@@ -13,10 +13,10 @@ function options_dialog(doc) {
   
   var group = dialog.add('panel')
   group.orientation = 'row'
-  var mergePages = group.add('radiobutton', undefined, 'Merge Pages')
-  mergePages.value = opt.mergePages
   var splitPages = group.add('radiobutton', undefined, 'Split Pages')
   splitPages.value = !opt.mergePages
+  var mergePages = group.add('radiobutton', undefined, 'Merge Pages')
+  mergePages.value = opt.mergePages
   
   var group = dialog.add('panel')
   group.alignChildren = 'left'
