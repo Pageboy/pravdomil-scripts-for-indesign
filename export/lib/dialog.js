@@ -65,7 +65,6 @@ function get_options(doc) {
   var label = doc.extractLabel('pravdomil_html_export')
   var opt = myJSONparse(label)
   if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
-  if(opt.mergePages === undefined) { opt.mergePages = true }
   return opt
 }
 
