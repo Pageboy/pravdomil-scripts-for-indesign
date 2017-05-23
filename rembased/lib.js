@@ -29,8 +29,11 @@ function apply(object, deltaX, deltaY, resize) {
   
   object.move([bounds[1], bounds[0]])
   
+  if(object instanceof GraphicLine) { return }
+  
   var width = Math.max(bounds[3] - bounds[1], 8)
   var height = Math.max(bounds[2] - bounds[0], 8)
+  
   object.resize(
     CoordinateSpaces.INNER_COORDINATES, AnchorPoint.TOP_LEFT_ANCHOR,
     ResizeMethods.REPLACING_CURRENT_DIMENSIONS_WITH,
