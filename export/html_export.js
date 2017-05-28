@@ -4,15 +4,13 @@
 #include "lib/support.js"
 #include "lib/optimalize.js"
 
-main()
+app.doScript(epub_export, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "HTML Export")
 
-function main() {
+function epub_export() {
   if(!app.documents.length) { return }
   
-  epub_export(app.activeDocument)
-}
-
-function epub_export(doc) {
+  var doc = app.activeDocument
+  
   var opt = options_dialog(doc)
   if(!opt) { return }
   
