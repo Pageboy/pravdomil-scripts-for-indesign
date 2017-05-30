@@ -1,7 +1,6 @@
 function open_file(file) {
   if(file.exists) {
-    var openLocation = 'tell application "System Events" to open location "file://' + file.fsName + '"'
-    alert('HTML Export\nDone.')
+    var openLocation = 'do shell script "open file://' + file.fsName + '"'
     app.doScript(openLocation, ScriptLanguage.applescriptLanguage)
   }
 }
