@@ -23,6 +23,7 @@ function optimalize_html(doc, files, opt) {
 function merge_file(doc, opt, files, contents) {
   var file = files[0]
   file.lineFeed = 'Unix'
+  file.encoding = 'UTF-8'
   file.open('e')
   
   var content = file.read()
