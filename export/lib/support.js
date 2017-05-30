@@ -6,6 +6,13 @@ function open_file(file) {
   }
 }
 
+function getBgColor(doc) {
+  var paper = doc.swatches.itemByName('Paper')
+  paper.space = ColorSpace.RGB
+  var rgb = paper.colorValue
+  return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
+}
+
 File.prototype.nameWithoutExt = function() {
   return this.name.replace(/\.[^\.]+$/, '')
 }
