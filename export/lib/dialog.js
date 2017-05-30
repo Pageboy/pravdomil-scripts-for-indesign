@@ -7,9 +7,9 @@ function options_dialog(doc) {
   var group = dialog.add('panel')
   group.orientation = 'row'
   var allPages = group.add('radiobutton', undefined, 'All Pages')
-  allPages.value = !opt.currentPage
-  var currentPage = group.add('radiobutton', undefined, 'Current Page')
-  currentPage.value = opt.currentPage
+  allPages.value = !opt.onlyCurrentPage
+  var onlyCurrentPage = group.add('radiobutton', undefined, 'Current Page')
+  onlyCurrentPage.value = opt.onlyCurrentPage
   
   var group = dialog.add('panel')
   group.orientation = 'row'
@@ -34,7 +34,7 @@ function options_dialog(doc) {
   group.add('button', undefined, 'OK')
   
   if(dialog.show() == 1) {
-    opt.currentPage = currentPage.value
+    opt.onlyCurrentPage = onlyCurrentPage.value
     opt.mergePages = mergePages.value
     opt.versioning = versioning.value
     opt.keepFontFiles = keepFontFiles.value

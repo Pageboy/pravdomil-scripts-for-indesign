@@ -21,7 +21,7 @@ function epub_export() {
   }
   
   var exportPref = doc.htmlFXLExportPreferences
-  if(opt.currentPage) {
+  if(opt.onlyCurrentPage) {
     exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_PAGE_RANGE
     exportPref.epubPageRange = app.activeWindow.activePage.name
   }
