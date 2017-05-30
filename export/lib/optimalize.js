@@ -1,51 +1,75 @@
-function optimalize_html(doc, file, opt) {
+function optimalize_html(doc, files, opt) {
   if(!opt.keepFontFiles) {
     var fontFile = new File(file.parent + '/' + file.nameWithoutExt() + '-web-resources/script/FontData.js')
     if(fontFile.exists) { fontFile.remove() }
   }
   
-  optimalize_file(doc, file, opt, file)
-  
-  if(!opt.currentPage) {
-    if(opt.mergePages) {
-      merge_file(doc, file, opt, file)
+  if(opt.mergePages) {
+    var contents = []
+    for(var i = 0; i < files.length; i++) {
+      contents.push(get_body(files[i]))
     }
     
-    for(var i = 1; i < doc.pages.length; i++) {
-      var f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html')
-      opt.mergePages ? merge_file(doc, file, opt, f) : optimalize_file(doc, file, opt, f)
+    merge_file(doc, opt, files, contents)
+  }
+  else {
+    for(var i = 0; i < files.length; i++) {
+      optimalize_file(doc, opt, files[i])
     }
   }
 }
 
-function merge_file(doc, file, opt, current) {
-  current.lineFeed = 'Unix'
-  current.open('r')
+function merge_file(doc, opt, files, contents) {
+  var file = files[0]
+  file.lineFeed = 'Unix'
+  file.open('e')
   
-  var content = current.read()
-  var start = content.indexOf('<body')
-  var end = content.lastIndexOf('</body>')
-  var html = '<div' + content.substr(start + 5, end - start - 5) + '</div>'
+  var content = file.read()
+  content = optimalize_head(doc, opt, file, content)
+  file.seek(0)
+  file.write(content)
   
-  if(file == current) {
-    file.lineFeed = 'Unix'
-    file.open('e')
-    file.seek(start)
-    file.write('<body onload="RegisterInteractiveHandlers();">')
+  file.seek(content.indexOf('<body'))
+  file.write('<body onload="RegisterInteractiveHandlers();">')
+  
+  for(var i = 0; i < contents.length; i++) {
+    file.write(contents[i])
   }
-  else {
-    html = html.replace('style="', 'style="margin: auto; position: relative;')
-    current.remove()
-  }
-  
-  file.write(html)
+  file.close()
 }
 
-function optimalize_file(doc, file, opt, current) {
-  current.lineFeed = 'Unix'
-  current.open('e')
+function get_body(file) {
+  file.lineFeed = 'Unix'
+  file.open('r')
   
-  var content = current.read()
+  var content = file.read()
+  var start = content.indexOf('<body')
+  var end = content.lastIndexOf('</body>')
+  
+  var div = '<div' + content.substr(start + 5, end - start - 5) + '</div>'
+  div = div.replace('style="', 'style="margin: auto; position: relative; ')
+  return div
+}
+
+function optimalize_file(doc, opt, file) {
+  file.lineFeed = 'Unix'
+  file.open('e')
+  
+  var content = file.read()
+  content = optimalize_head(doc, opt, file, content)
+  content = optimalize_body(doc, opt, file, content)
+  
+  file.seek(0)
+  file.write(content)
+  file.close()
+}
+
+function optimalize_body(doc, opt, file, content) {
+  var extraStyle = 'margin: auto; position: relative; background-color: rgb(' + getBgColor(doc).join(', ') + '); '
+  return content.replace('style="', 'style="' + extraStyle)
+}
+
+function optimalize_head(doc, opt, file, content) {
   var head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
     '\t\t<meta name="viewport" content="width=device-width" />\n' +
     '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +
@@ -53,14 +77,9 @@ function optimalize_file(doc, file, opt, current) {
     '\t\t<script>window.top.onFrameDOMLoaded = function() { return true }</script>\n' +
     '\t\t<script>function press(innerText) { var butons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < butons.length; i++) { var button = butons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("MouseEvents"); evt.initEvent("mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>\n'
   
-  content = content.replace('<title>' + current.nameWithoutExt() + '</title>', head)
-  content = content.replace('style="', 'style="margin: auto; position: relative;')
-  
   if(!opt.keepFontFiles) {
     content = content.replace('<script src="' + file.nameWithoutExt() + '-web-resources/script/FontData.js" type="text/javascript"></script>', '')
   }
   
-  current.seek(0)
-  current.write(content)
-  current.close()
+  return content.replace(/<title>[^<]*<\/title>/, head)
 }
