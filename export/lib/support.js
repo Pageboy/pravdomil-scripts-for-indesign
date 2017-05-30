@@ -13,5 +13,5 @@ function getBgColor(doc) {
 }
 
 File.prototype.nameWithoutExt = function() {
-  return this.name.replace(/\.[^\.]+$/, '')
+  return this.displayName.replace(/\.[^\.]+$/, '')
 }

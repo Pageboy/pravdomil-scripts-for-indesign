@@ -16,7 +16,7 @@ function epub_export() {
   
   var file = new File(opt.outputFile)
   if(opt.versioning) {
-    file = new File(file.parent + '/' + versionString() + '/' + file.name)
+    file = new File(file.parent + '/' + versionString() + '/' + file.displayName)
     if(!file.parent.exists) { file.parent.create() }
   }
   
