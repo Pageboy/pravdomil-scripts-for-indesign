@@ -1,6 +1,6 @@
 function optimalize_html(doc, files, opt) {
   if(!opt.keepFontFiles) {
-    var fontFile = new File(file.parent + '/' + file.nameWithoutExt() + '-web-resources/script/FontData.js')
+    var fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js')
     if(fontFile.exists) { fontFile.remove() }
   }
   
