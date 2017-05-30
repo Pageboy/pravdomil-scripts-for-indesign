@@ -28,15 +28,12 @@ function merge_file(doc, opt, files, contents) {
   
   var content = file.read()
   content = optimalize_head(doc, opt, file, content)
+  content = content.substr(0, content.indexOf('<body'))
+  content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">'
+  content += contents.join('')
+  
   file.seek(0)
   file.write(content)
-  
-  file.seek(content.indexOf('<body'))
-  file.write('<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">')
-  
-  for(var i = 0; i < contents.length; i++) {
-    file.write(contents[i])
-  }
   file.close()
 }
 
