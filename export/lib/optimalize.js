@@ -42,6 +42,7 @@ function merge_file(doc, opt, files, contents) {
 
 function get_body(file) {
   file.lineFeed = 'Unix'
+  file.encoding = 'UTF-8'
   file.open('r')
   
   var content = file.read()
@@ -57,6 +58,7 @@ function get_body(file) {
 
 function optimalize_file(doc, opt, file) {
   file.lineFeed = 'Unix'
+  file.encoding = 'UTF-8'
   file.open('e')
   
   var content = file.read()
