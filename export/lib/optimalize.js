@@ -8,6 +8,7 @@ function optimalize_html(doc, files, opt) {
     var contents = []
     for(var i = 0; i < files.length; i++) {
       contents.push(get_body(files[i]))
+      if(i > 0) { files[i].remove() }
     }
     
     merge_file(doc, opt, files, contents)
