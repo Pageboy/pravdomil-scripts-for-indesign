@@ -31,7 +31,16 @@ function epub_export() {
   
   doc.exportFile(ExportFormat.HTMLFXL, file, true)
   
-  optimalize_html(doc, file, opt)
+  var files = [file]
+  for(var i = 1; i < doc.pages.length; i++) {
+    var f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html')
+    files.push(f)
+  }
   
-  open_page(file, opt.currentPage || opt.mergePages ? 1 : app.activeWindow.activePage.name)
+  optimalize_html(doc, files, opt)
+  
+  var currentFile = files[(app.activeWindow.activePage.name - 1) | 0]
+  if(opt.onlyCurrentPage || opt.mergePages) { currentFile = file[0] }
+  
+  open_file(file, currentFile)
 }

@@ -1,9 +1,7 @@
-function open_page(file, currentPage) {
-  var suffix = (currentPage == 1) ? '' : '-' + (currentPage - 1)
-  var file = new File(file.parent + '/' + file.nameWithoutExt() + suffix + '.html')
-  
+function open_file(file) {
   if(file.exists) {
     var openLocation = 'tell application "System Events" to open location "file://' + file.fsName + '"'
+    alert('HTML Export\nDone.')
     app.doScript(openLocation, ScriptLanguage.applescriptLanguage)
   }
 }
