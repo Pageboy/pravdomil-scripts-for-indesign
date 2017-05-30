@@ -30,7 +30,7 @@ function merge_file(doc, opt, files, contents) {
   file.write(content)
   
   file.seek(content.indexOf('<body'))
-  file.write('<body onload="RegisterInteractiveHandlers();">')
+  file.write('<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()">')
   
   for(var i = 0; i < contents.length; i++) {
     file.write(contents[i])
