@@ -43,6 +43,8 @@ function get_body(file) {
   file.open('r')
   
   var content = file.read()
+  file.close()
+  
   var start = content.indexOf('<body')
   var end = content.lastIndexOf('</body>')
   
