@@ -78,7 +78,7 @@ function optimalize_head(doc, opt, file, content) {
     '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +
     '\t\t<script>window.top.shouldNavigate = function() { return true }</script>\n' +
     '\t\t<script>window.top.onFrameDOMLoaded = function() { return true }</script>\n' +
-    '\t\t<script>function press(innerText) { var butons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < butons.length; i++) { var button = butons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("Event"); evt.initEvent("ontouchend" in document.documentElement ? "touchend" : "mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>\n'
+    '\t\t<script>function press(innerText) { var buttons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < buttons.length; i++) { var button = buttons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("Event"); evt.initEvent("ontouchend" in document.documentElement ? "touchend" : "mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>\n'
   
   if(!opt.keepFontFiles) {
     content = content.replace('<script src="' + file.nameWithoutExt() + '-web-resources/script/FontData.js" type="text/javascript"></script>', '')
