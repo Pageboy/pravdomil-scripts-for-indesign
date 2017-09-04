@@ -1,5 +1,17 @@
 /// <reference path="../../node_modules/types-for-adobe/ScriptUI/index.d.ts" />
 
+function get_options(doc: Document) {
+  let label = doc.extractLabel("pravdomil_html_export");
+  let opt = myJSONParse(label);
+  if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
+  return opt
+}
+
+function save_options(doc: Document, opt: object) {
+  let label = myJSONStringify(opt);
+  doc.insertLabel("pravdomil_html_export", label)
+}
+
 function options_dialog(doc: Document) {  
   let opt = get_options(doc);
   
@@ -62,16 +74,4 @@ function options_dialog(doc: Document) {
     save_options(doc, opt);
     return opt
   }
-}
-
-function get_options(doc: Document) {
-  let label = doc.extractLabel("pravdomil_html_export");
-  let opt = myJSONParse(label);
-  if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
-  return opt
-}
-
-function save_options(doc: Document, opt: object) {
-  let label = myJSONStringify(opt);
-  doc.insertLabel("pravdomil_html_export", label)
 }
