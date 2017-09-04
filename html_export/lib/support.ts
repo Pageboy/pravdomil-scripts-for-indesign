@@ -26,7 +26,6 @@ function myJSONParse(str: string): any {
   catch (e) {
 
   }
-  return {}
 }
 
 function myJSONStringify(obj: object): string {
