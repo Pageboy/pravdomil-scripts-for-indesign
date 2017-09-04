@@ -4,9 +4,9 @@
 //@include "./lib/options.js"
 //@include "./lib/optimize.js"
 
-app.doScript(epub_export, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "HTML Export");
+app.doScript(pravdomilExport, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "HTML Export");
 
-function epub_export() {
+function pravdomilExport() {
   if(!app.documents.length) { return }
   
   let doc = app.activeDocument;
