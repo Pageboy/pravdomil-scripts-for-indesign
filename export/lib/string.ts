@@ -3,7 +3,9 @@ interface String {
   padStart(targetLength: number, padString: string): string;
 }
 
-String.prototype.trim = function() { return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "") };
+String.prototype.trim = function() {
+  return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
+};
 
 String.prototype.padStart = function(targetLength, padString) {
   targetLength = targetLength | 0;
