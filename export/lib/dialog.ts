@@ -1,4 +1,6 @@
-function options_dialog(doc) {  
+/// <reference path="../../node_modules/types-for-adobe/ScriptUI/index.d.ts" />
+
+function options_dialog(doc: Document) {  
   let opt = get_options(doc);
   
   let dialog = new Window('dialog', 'Pravdomil Export to HTML');
