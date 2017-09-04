@@ -1,7 +1,7 @@
 function open_file(file) {
   if(file.exists) {
     let openLocation = 'do shell script "open \'file://' + file.fsName + '\'"';
-    app.doScript(openLocation, ScriptLanguage.applescriptLanguage)
+    app.doScript(openLocation, ScriptLanguage.APPLESCRIPT_LANGUAGE)
   }
 }
 
