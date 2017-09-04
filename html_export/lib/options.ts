@@ -1,19 +1,19 @@
 /// <reference path="../../node_modules/types-for-adobe/ScriptUI/index.d.ts" />
 
-function get_options(doc: Document) {
+function pravdomilExportOptionsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
   let opt = myJSONParse(label);
   if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
   return opt
 }
 
-function save_options(doc: Document, opt: object) {
+function pravdomilExportOptionsSave(doc: Document, opt: object) {
   let label = myJSONStringify(opt);
   doc.insertLabel("pravdomil_html_export", label)
 }
 
 function options_dialog(doc: Document) {  
-  let opt = get_options(doc);
+  let opt = pravdomilExportOptionsGet(doc);
   
   let dialog = new Window("dialog", "Pravdomil Export to HTML");
   dialog.alignChildren = "fill";
@@ -70,8 +70,8 @@ function options_dialog(doc: Document) {
       if(path.name.substr(-5) !== ".html") { path += ".html" }
       opt.outputFile = path
     }
-    
-    save_options(doc, opt);
+
+    pravdomilExportOptionsSave(doc, opt);
     return opt
   }
 }
