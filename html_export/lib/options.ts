@@ -12,7 +12,7 @@ function pravdomilExportOptionsSave(doc: Document, opt: object) {
   doc.insertLabel("pravdomil_html_export", label)
 }
 
-function options_dialog(doc: Document) {  
+function pravdomilExportOptionsDialog(doc: Document) {  
   let opt = pravdomilExportOptionsGet(doc);
   
   let dialog = new Window("dialog", "Pravdomil Export to HTML");

@@ -11,7 +11,7 @@ function pravdomilExport() {
   
   let doc = app.activeDocument;
   
-  let opt = options_dialog(doc);
+  let opt = pravdomilExportOptionsDialog(doc);
   if(!opt) { return }
   
   let file = new File(opt.outputFile);
