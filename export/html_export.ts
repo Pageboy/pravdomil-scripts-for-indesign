@@ -16,7 +16,7 @@ function epub_export() {
   
   let file = new File(opt.outputFile);
   if(opt.versioning) {
-    file = new File(file.parent + '/' + versionString() + '/' + file.displayName);
+    file = new File(file.parent + "/" + versionString() + "/" + file.displayName);
     if(!file.parent.exists) { file.parent.create() }
   }
   
@@ -33,7 +33,7 @@ function epub_export() {
   
   let files = [file];
   for(let i = 1; i < doc.pages.length; i++) {
-    let f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html');
+    let f = new File(file.parent + "/" + file.nameWithoutExt() + "-" + i + ".html");
     files.push(f)
   }
 

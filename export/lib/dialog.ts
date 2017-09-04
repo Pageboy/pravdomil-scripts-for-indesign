@@ -3,38 +3,38 @@
 function options_dialog(doc: Document) {  
   let opt = get_options(doc);
   
-  let dialog = new Window('dialog', 'Pravdomil Export to HTML');
-  dialog.alignChildren = 'fill';
+  let dialog = new Window("dialog", "Pravdomil Export to HTML");
+  dialog.alignChildren = "fill";
   
-  let pagesPanel = dialog.add('panel') as Panel;
-  pagesPanel.orientation = 'row';
-  pagesPanel.text = 'Pages';
-  let allPages = pagesPanel.add('radiobutton', undefined, 'All Pages');
+  let pagesPanel = dialog.add("panel") as Panel;
+  pagesPanel.orientation = "row";
+  pagesPanel.text = "Pages";
+  let allPages = pagesPanel.add("radiobutton", undefined, "All Pages");
   allPages.value = !opt.onlyCurrentPage;
-  let onlyCurrentPage = pagesPanel.add('radiobutton', undefined, 'Current Page');
+  let onlyCurrentPage = pagesPanel.add("radiobutton", undefined, "Current Page");
   onlyCurrentPage.value = opt.onlyCurrentPage;
   
-  let group = dialog.add('panel') as Panel;
-  group.orientation = 'row';
-  let splitPages = group.add('radiobutton', undefined, 'Split Pages');
+  let group = dialog.add("panel") as Panel;
+  group.orientation = "row";
+  let splitPages = group.add("radiobutton", undefined, "Split Pages");
   splitPages.value = !opt.mergePages;
-  let mergePages = group.add('radiobutton', undefined, 'Merge Pages');
+  let mergePages = group.add("radiobutton", undefined, "Merge Pages");
   mergePages.value = opt.mergePages;
   
-  let group = dialog.add('panel') as Panel;
-  group.alignChildren = 'left';
-  group.orientation = 'column';
+  let group = dialog.add("panel") as Panel;
+  group.alignChildren = "left";
+  group.orientation = "column";
   
-  let versioning = group.add('checkbox', undefined, 'Versioning');
+  let versioning = group.add("checkbox", undefined, "Versioning");
   versioning.value = opt.versioning;
   
-  let keepFontFiles = group.add('checkbox', undefined, 'Keep Font Files');
+  let keepFontFiles = group.add("checkbox", undefined, "Keep Font Files");
   keepFontFiles.value = opt.keepFontFiles;
   
-  let group = dialog.add('group');
-  group.alignment = 'right';
-  group.add('button', undefined, 'Cancel');
-  group.add('button', undefined, 'OK');
+  let group = dialog.add("group");
+  group.alignment = "right";
+  group.add("button", undefined, "Cancel");
+  group.add("button", undefined, "OK");
   
   if(dialog.show() == 1) {
     opt.onlyCurrentPage = onlyCurrentPage.value;
@@ -48,14 +48,14 @@ function options_dialog(doc: Document) {
       path = outputFile.saveDlg()
     }
     else if(doc.saved) {
-      path = new File(doc.fullName.fullName.replace(/\.indd$/, '.html')).saveDlg()
+      path = new File(doc.fullName.fullName.replace(/\.indd$/, ".html")).saveDlg()
     }
     else {
       path = File.openDialog()
     }
     if(!path) { return }
     else {
-      if(path.name.substr(-5) !== '.html') { path += '.html' }
+      if(path.name.substr(-5) !== ".html") { path += ".html" }
       opt.outputFile = path
     }
     
@@ -65,7 +65,7 @@ function options_dialog(doc: Document) {
 }
 
 function get_options(doc) {
-  let label = doc.extractLabel('pravdomil_html_export');
+  let label = doc.extractLabel("pravdomil_html_export");
   let opt = myJSONparse(label);
   if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
   return opt
@@ -73,5 +73,5 @@ function get_options(doc) {
 
 function save_options(doc, opt) {
   let label = myJSONstringify(opt);
-  doc.insertLabel('pravdomil_html_export', label)
+  doc.insertLabel("pravdomil_html_export", label)
 }
