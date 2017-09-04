@@ -42,5 +42,5 @@ function epub_export() {
   let currentFile = files[(app.activeWindow.activePage.name - 1) | 0];
   if(opt.onlyCurrentPage || opt.mergePages) { currentFile = file[0] }
   
-  open_file(file, currentFile)
+  openFile(file);
 }
