@@ -1,6 +1,6 @@
 interface String {
   trim(): string;
-  padStart(targetLength: number, padString: string): string;
+  padStart(targetLength: number, padString?: string): string;
 }
 
 String.prototype.trim = function() {
