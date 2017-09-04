@@ -8,6 +8,7 @@ function options_dialog(doc: Document) {
   
   let pagesPanel = dialog.add('panel') as Panel;
   pagesPanel.orientation = 'row';
+  pagesPanel.text = 'Pages';
   let allPages = pagesPanel.add('radiobutton', undefined, 'All Pages');
   allPages.value = !opt.onlyCurrentPage;
   let onlyCurrentPage = pagesPanel.add('radiobutton', undefined, 'Current Page');
