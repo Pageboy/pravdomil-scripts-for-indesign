@@ -6,11 +6,11 @@ function options_dialog(doc: Document) {
   let dialog = new Window('dialog', 'Pravdomil Export to HTML');
   dialog.alignChildren = 'fill';
   
-  let group = dialog.add('panel') as Panel;
-  group.orientation = 'row';
-  let allPages = group.add('radiobutton', undefined, 'All Pages');
+  let panel = dialog.add('panel') as Panel;
+  panel.orientation = 'row';
+  let allPages = panel.add('radiobutton', undefined, 'All Pages');
   allPages.value = !opt.onlyCurrentPage;
-  let onlyCurrentPage = group.add('radiobutton', undefined, 'Current Page');
+  let onlyCurrentPage = panel.add('radiobutton', undefined, 'Current Page');
   onlyCurrentPage.value = opt.onlyCurrentPage;
   
   let group = dialog.add('panel') as Panel;
