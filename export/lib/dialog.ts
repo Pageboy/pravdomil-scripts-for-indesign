@@ -4,21 +4,21 @@ function options_dialog(doc) {
   let dialog = new Window('dialog', 'Pravdomil Export to HTML');
   dialog.alignChildren = 'fill';
   
-  let group = dialog.add('panel');
+  let group = dialog.add('panel') as Panel;
   group.orientation = 'row';
   let allPages = group.add('radiobutton', undefined, 'All Pages');
   allPages.value = !opt.onlyCurrentPage;
   let onlyCurrentPage = group.add('radiobutton', undefined, 'Current Page');
   onlyCurrentPage.value = opt.onlyCurrentPage;
   
-  let group = dialog.add('panel');
+  let group = dialog.add('panel') as Panel;
   group.orientation = 'row';
   let splitPages = group.add('radiobutton', undefined, 'Split Pages');
   splitPages.value = !opt.mergePages;
   let mergePages = group.add('radiobutton', undefined, 'Merge Pages');
   mergePages.value = opt.mergePages;
   
-  let group = dialog.add('panel');
+  let group = dialog.add('panel') as Panel;
   group.alignChildren = 'left';
   group.orientation = 'column';
   
