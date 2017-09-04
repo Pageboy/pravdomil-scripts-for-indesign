@@ -1,26 +1,26 @@
 function nudge(arg) {
-  var objects = app.activeDocument.selection;
-  var deltaX = arg[0];
-  var deltaY = arg[1];
+  let objects = app.activeDocument.selection;
+  let deltaX = arg[0];
+  let deltaY = arg[1];
   
-  for(var i = 0; i < objects.length; i++) {
+  for(let i = 0; i < objects.length; i++) {
     apply(objects[i], deltaX, deltaY)
   }
 }
 
 function resize(arg) {
-  var objects = app.activeDocument.selection;
-  var deltaX = arg[0];
-  var deltaY = arg[1];
+  let objects = app.activeDocument.selection;
+  let deltaX = arg[0];
+  let deltaY = arg[1];
   
-  for(var i = 0; i < objects.length; i++) {
+  for(let i = 0; i < objects.length; i++) {
     apply(objects[i], deltaX, deltaY, true)
   }
 }
 
 function apply(object, deltaX, deltaY, resize) {
   // [y1, x1, y2, x2]
-  var bounds = object.visibleBounds;
+  let bounds = object.visibleBounds;
   
   bounds[0] = Math.round(bounds[0] / 8 + (resize ? 0 : deltaY * 2)) * 8;
   bounds[1] = Math.round(bounds[1] / 8 + (resize ? 0 : deltaX * 2)) * 8;
@@ -31,8 +31,8 @@ function apply(object, deltaX, deltaY, resize) {
   
   if(object instanceof GraphicLine) { return }
   
-  var width = Math.max(bounds[3] - bounds[1], 8);
-  var height = Math.max(bounds[2] - bounds[0], 8);
+  let width = Math.max(bounds[3] - bounds[1], 8);
+  let height = Math.max(bounds[2] - bounds[0], 8);
   
   object.resize(
     CoordinateSpaces.INNER_COORDINATES, AnchorPoint.TOP_LEFT_ANCHOR,
