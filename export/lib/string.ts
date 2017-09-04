@@ -1,10 +1,3 @@
-function versionString() {
-  let date = new Date();
-  return date.getFullYear().toString().substr(2)
-    + date.getMonth().toString().padStart(2, "0")
-    + date.getDate().toString().padStart(2, "0")
-}
-
 String.prototype.trim = function() { return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "") };
 
 String.prototype.padStart = function(targetLength, padString) {
@@ -20,3 +13,10 @@ String.prototype.padStart = function(targetLength, padString) {
     return padString.slice(0, targetLength) + String(this)
   }
 };
+
+function versionString() {
+  let date = new Date();
+  return date.getFullYear().toString().substr(2)
+    + date.getMonth().toString().padStart(2, "0")
+    + date.getDate().toString().padStart(2, "0")
+}
