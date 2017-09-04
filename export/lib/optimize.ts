@@ -1,12 +1,12 @@
 function optimize_html(doc, files, opt) {
   if(!opt.keepFontFiles) {
-    var fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js');
+    let fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js');
     if(fontFile.exists) { fontFile.remove() }
   }
   
   if(opt.mergePages) {
-    var contents = [];
-    for(var i = 0; i < files.length; i++) {
+    let contents = [];
+    for(let i = 0; i < files.length; i++) {
       contents.push(get_body(files[i]));
       if(i > 0) { files[i].remove() }
     }
@@ -14,19 +14,19 @@ function optimize_html(doc, files, opt) {
     merge_file(doc, opt, files, contents)
   }
   else {
-    for(var i = 0; i < files.length; i++) {
+    for(let i = 0; i < files.length; i++) {
       optimize_file(doc, opt, files[i])
     }
   }
 }
 
 function merge_file(doc, opt, files, contents) {
-  var file = files[0];
+  let file = files[0];
   file.lineFeed = 'Unix';
   file.encoding = 'UTF-8';
   file.open('e');
   
-  var content = file.read();
+  let content = file.read();
   content = optimize_head(doc, opt, file, content);
   content = content.substr(0, content.indexOf('<body'));
   content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">';
@@ -42,13 +42,13 @@ function get_body(file) {
   file.encoding = 'UTF-8';
   file.open('r');
   
-  var content = file.read();
+  let content = file.read();
   file.close();
   
-  var start = content.indexOf('<body');
-  var end = content.lastIndexOf('</body>');
+  let start = content.indexOf('<body');
+  let end = content.lastIndexOf('</body>');
   
-  var div = '<div' + content.substr(start + 5, end - start - 5) + '</div>';
+  let div = '<div' + content.substr(start + 5, end - start - 5) + '</div>';
   div = div.replace('style="', 'style="margin: auto; position: relative; ');
   return div
 }
@@ -58,7 +58,7 @@ function optimize_file(doc, opt, file) {
   file.encoding = 'UTF-8';
   file.open('e');
   
-  var content = file.read();
+  let content = file.read();
   content = optimize_head(doc, opt, file, content);
   content = optimize_body(doc, opt, file, content);
   
@@ -68,12 +68,12 @@ function optimize_file(doc, opt, file) {
 }
 
 function optimize_body(doc, opt, file, content) {
-  var extraStyle = 'margin: auto; position: relative; background-color: rgb(' + getBgColor(doc).join(', ') + '); ';
+  let extraStyle = 'margin: auto; position: relative; background-color: rgb(' + getBgColor(doc).join(', ') + '); ';
   return content.replace('style="', 'style="' + extraStyle)
 }
 
 function optimize_head(doc, opt, file, content) {
-  var head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
+  let head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
     '\t\t<meta name="viewport" content="width=device-width" />\n' +
     '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +
     '\t\t<script>window.top.shouldNavigate = function() { return true }</script>\n' +
