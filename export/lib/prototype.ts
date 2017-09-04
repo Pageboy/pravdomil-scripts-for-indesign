@@ -1,3 +1,11 @@
+interface File {
+  nameWithoutExt(): string;
+}
+
+File.prototype.nameWithoutExt = function() {
+  return this.displayName.replace(/\.[^.]+$/, "")
+};
+
 interface String {
   trim(): string;
   padStart(targetLength: number, padString?: string): string;
@@ -35,5 +43,3 @@ String.prototype.repeat = function(count: number) {
   }
   return rpt;
 };
-
-
