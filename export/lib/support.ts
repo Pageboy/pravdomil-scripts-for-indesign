@@ -18,3 +18,17 @@ function versionString() {
     + date.getMonth().toString().padStart(2, "0")
     + date.getDate().toString().padStart(2, "0")
 }
+
+function myJSONParse(str: string): any {
+  try {
+    return eval(str);
+  }
+  catch (e) {
+
+  }
+  return {}
+}
+
+function myJSONStringify(obj: object): string {
+  return obj.toSource();
+}
