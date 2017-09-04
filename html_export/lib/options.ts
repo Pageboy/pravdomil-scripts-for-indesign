@@ -3,7 +3,11 @@
 function pravdomilExportOptionsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
   let opt = myJSONParse(label);
-  if(opt.keepFontFiles === undefined) { opt.keepFontFiles = true }
+  
+  if(opt.keepFontFiles == undefined) {
+    opt.keepFontFiles = true;
+  }
+  
   return opt
 }
 
