@@ -1,6 +1,7 @@
 interface String {
   trim(): string;
   padStart(targetLength: number, padString?: string): string;
+  repeat(count: number): string;
 }
 
 String.prototype.trim = function() {
@@ -18,6 +19,21 @@ String.prototype.padStart = function(targetLength: number, padString = " ") {
     }
     return padString.slice(0, targetLength) + String(this)
   }
+};
+
+String.prototype.repeat = function(count: number) {
+  count = Math.floor(count);
+  let str = String(this);
+  
+  if (str.length == 0 || count == 0) {
+    return '';
+  }
+  
+  let rpt = '';
+  for (let i = 0; i < count; i++) {
+    rpt += str;
+  }
+  return rpt;
 };
 
 function versionString() {
