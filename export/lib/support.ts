@@ -1,11 +1,11 @@
-function open_file(file) {
+function open_file(file: File) {
   if(file.exists) {
     let openLocation = 'do shell script "open \'file://' + file.fsName + '\'"';
     app.doScript(openLocation, ScriptLanguage.APPLESCRIPT_LANGUAGE)
   }
 }
 
-function getBgColor(doc) {
+function getBgColor(doc: Document) {
   let paper = doc.swatches.itemByName("Paper");
   paper.space = ColorSpace.RGB;
   let rgb = paper.colorValue;
