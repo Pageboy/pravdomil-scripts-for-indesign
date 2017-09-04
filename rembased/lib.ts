@@ -1,24 +1,6 @@
 /// <reference path="../node_modules/types-for-adobe/InDesign/2015.3/index.d.ts" />
 
-function nudge(arg: [number, number]) {
-  let deltaX = arg[0];
-  let deltaY = arg[1];
-  
-  for(let item of app.selection as Object[]) {
-    apply(item as PageItem, deltaX, deltaY, false)
-  }
-}
-
-function resize(arg: [number, number]) {
-  let deltaX = arg[0];
-  let deltaY = arg[1];
-
-  for(let item of app.selection as Object[]) {
-    apply(item as PageItem, deltaX, deltaY, true)
-  }
-}
-
-function apply(object: PageItem, deltaX: number, deltaY: number, resize: boolean) {
+function rembasedApply(object: PageItem, deltaX: number, deltaY: number, resize: boolean) {
   // [y1, x1, y2, x2]
   let bounds = object.visibleBounds as [number, number, number, number];
   
