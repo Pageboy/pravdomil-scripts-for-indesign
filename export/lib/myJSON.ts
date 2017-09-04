@@ -8,6 +8,6 @@ function myJSONParse(str: string): any {
   return {}
 }
 
-function myJSONStringify(obj: Object): string {
+function myJSONStringify(obj: object): string {
   return obj.toSource();
 }
