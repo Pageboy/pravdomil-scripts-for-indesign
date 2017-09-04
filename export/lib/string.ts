@@ -7,12 +7,11 @@ String.prototype.trim = function() {
   return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
 };
 
-String.prototype.padStart = function(targetLength, padString) {
-  targetLength = targetLength | 0;
-  padString = String(padString || " ");
+String.prototype.padStart = function(targetLength: number, padString = " ") {
   if(this.length > targetLength) {
     return String(this)
-  } else {
+  }
+  else {
     targetLength = targetLength - this.length;
     if(targetLength > padString.length) {
       padString += padString.repeat(targetLength / padString.length)
