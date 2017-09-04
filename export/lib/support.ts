@@ -6,7 +6,7 @@ function open_file(file: File) {
 }
 
 function getBgColor(doc: Document) {
-  let paper = doc.swatches.itemByName("Paper");
+  let paper = doc.swatches.itemByName("Paper") as Color;
   paper.space = ColorSpace.RGB;
   let rgb = paper.colorValue;
   return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
