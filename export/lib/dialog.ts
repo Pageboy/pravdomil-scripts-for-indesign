@@ -2,7 +2,7 @@ function options_dialog(doc) {
   let opt = get_options(doc);
   
   let dialog = new Window('dialog', 'Pravdomil Export to HTML');
-  dialog.alignChildren = 'center';
+  dialog.alignChildren = 'fill';
   
   let group = dialog.add('panel');
   group.orientation = 'row';
