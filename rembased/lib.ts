@@ -1,26 +1,26 @@
-function nudge(arg) {
-  let objects = app.activeDocument.selection;
+/// <reference path="../node_modules/types-for-adobe/InDesign/2015.3/index.d.ts" />
+
+function nudge(arg: [number, number]) {
   let deltaX = arg[0];
   let deltaY = arg[1];
   
-  for(let i = 0; i < objects.length; i++) {
-    apply(objects[i], deltaX, deltaY)
+  for(let item of app.selection as Object[]) {
+    apply(item as PageItem, deltaX, deltaY, false)
   }
 }
 
-function resize(arg) {
-  let objects = app.activeDocument.selection;
+function resize(arg: [number, number]) {
   let deltaX = arg[0];
   let deltaY = arg[1];
-  
-  for(let i = 0; i < objects.length; i++) {
-    apply(objects[i], deltaX, deltaY, true)
+
+  for(let item of app.selection as Object[]) {
+    apply(item as PageItem, deltaX, deltaY, true)
   }
 }
 
-function apply(object, deltaX, deltaY, resize) {
+function apply(object: PageItem, deltaX: number, deltaY: number, resize: boolean) {
   // [y1, x1, y2, x2]
-  let bounds = object.visibleBounds;
+  let bounds = object.visibleBounds as [number, number, number, number];
   
   bounds[0] = Math.round(bounds[0] / 8 + (resize ? 0 : deltaY * 2)) * 8;
   bounds[1] = Math.round(bounds[1] / 8 + (resize ? 0 : deltaX * 2)) * 8;
