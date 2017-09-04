@@ -13,7 +13,10 @@ interface PravdomilExportOptions {
 
 function pravdomilExportOptionsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
-  let opt = myJSONParse(label);
+  let opt = myJSONParse(label) as PravdomilExportOptions;
+  if(typeof opt != "object") {
+    opt = {};
+  }
   
   if(opt.keepFontFiles == undefined) {
     opt.keepFontFiles = true;
