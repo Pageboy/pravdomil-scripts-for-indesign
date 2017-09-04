@@ -17,5 +17,5 @@ interface File {
 }
 
 File.prototype.nameWithoutExt = function() {
-  return this.displayName.replace(/\.[^\.]+$/, "")
+  return this.displayName.replace(/\.[^.]+$/, "")
 };
