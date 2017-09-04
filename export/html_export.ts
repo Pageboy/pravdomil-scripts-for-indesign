@@ -1,8 +1,8 @@
-#include "lib/string.js"
-#include "lib/myJSON.js"
-#include "lib/dialog.js"
-#include "lib/support.js"
-#include "lib/optimalize.js"
+//@include "./lib/string.js"
+//@include "./lib/myJSON.js"
+//@include "./lib/dialog.js"
+//@include "./lib/support.js"
+//@include "./lib/optimalize.js"
 
 app.doScript(epub_export, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "HTML Export")
 
