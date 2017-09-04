@@ -3,6 +3,7 @@
     "module": "none",
     "target": "es3",
     "outDir": "js",
+    "noLib": true,
     "strict": true
   },
   "exclude": [
