@@ -1,4 +1,5 @@
 //@include "./lib/prototype.js"
+//@include "./lib/myJSON.js"
 //@include "./lib/dialog.js"
 //@include "./lib/support.js"
 //@include "./lib/optimize.js"
