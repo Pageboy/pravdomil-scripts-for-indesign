@@ -1,0 +1,7 @@
+{
+  "name": "pravdomil-scripts-for-indesign",
+  "version": "0.0.1",
+  "dependencies": {
+    "types-for-adobe": "github:pravdomil/types-for-adobe"
+  }
+}
