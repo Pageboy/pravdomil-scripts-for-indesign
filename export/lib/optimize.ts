@@ -1,4 +1,4 @@
-function optimalize_html(doc, files, opt) {
+function optimize_html(doc, files, opt) {
   if(!opt.keepFontFiles) {
     var fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js')
     if(fontFile.exists) { fontFile.remove() }
@@ -15,7 +15,7 @@ function optimalize_html(doc, files, opt) {
   }
   else {
     for(var i = 0; i < files.length; i++) {
-      optimalize_file(doc, opt, files[i])
+      optimize_file(doc, opt, files[i])
     }
   }
 }
@@ -27,7 +27,7 @@ function merge_file(doc, opt, files, contents) {
   file.open('e')
   
   var content = file.read()
-  content = optimalize_head(doc, opt, file, content)
+  content = optimize_head(doc, opt, file, content)
   content = content.substr(0, content.indexOf('<body'))
   content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">'
   content += contents.join('')
@@ -53,26 +53,26 @@ function get_body(file) {
   return div
 }
 
-function optimalize_file(doc, opt, file) {
+function optimize_file(doc, opt, file) {
   file.lineFeed = 'Unix'
   file.encoding = 'UTF-8'
   file.open('e')
   
   var content = file.read()
-  content = optimalize_head(doc, opt, file, content)
-  content = optimalize_body(doc, opt, file, content)
+  content = optimize_head(doc, opt, file, content)
+  content = optimize_body(doc, opt, file, content)
   
   file.seek(0)
   file.write(content)
   file.close()
 }
 
-function optimalize_body(doc, opt, file, content) {
+function optimize_body(doc, opt, file, content) {
   var extraStyle = 'margin: auto; position: relative; background-color: rgb(' + getBgColor(doc).join(', ') + '); '
   return content.replace('style="', 'style="' + extraStyle)
 }
 
-function optimalize_head(doc, opt, file, content) {
+function optimize_head(doc, opt, file, content) {
   var head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
     '\t\t<meta name="viewport" content="width=device-width" />\n' +
     '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +

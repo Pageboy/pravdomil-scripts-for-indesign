@@ -36,8 +36,8 @@ function epub_export() {
     let f = new File(file.parent + '/' + file.nameWithoutExt() + '-' + i + '.html');
     files.push(f)
   }
-  
-  optimalize_html(doc, files, opt);
+
+  optimize_html(doc, files, opt);
   
   let currentFile = files[(app.activeWindow.activePage.name - 1) | 0];
   if(opt.onlyCurrentPage || opt.mergePages) { currentFile = file[0] }
