@@ -1,4 +1,4 @@
-//@include "./lib.js" 
+//@include "./lib.js"
 
 app.doScript(function() {
   for(let item of app.selection as Object[]) {
