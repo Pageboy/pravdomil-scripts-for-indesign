@@ -12,6 +12,10 @@ function getBgColor(doc) {
   return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
 }
 
+interface File {
+  nameWithoutExt(): string;
+}
+
 File.prototype.nameWithoutExt = function() {
   return this.displayName.replace(/\.[^\.]+$/, "")
 };
