@@ -1,4 +1,4 @@
-function pravdomilExportSettingsDefault(settings: PravdomilExportOptionsSettings) {
+function pravdomilExportSettingsDefaults(settings: PravdomilExportOptionsSettings) {
   if(settings.keepFontFiles == undefined) {
     settings.keepFontFiles = true;
   }
