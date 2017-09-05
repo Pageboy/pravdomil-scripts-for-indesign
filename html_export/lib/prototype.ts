@@ -3,7 +3,7 @@ interface File {
 }
 
 File.prototype.nameWithoutExt = function() {
-  return this.displayName.replace(/\.[^.]+$/, "")
+  return this.name.replace(/\.[^.]+$/, "")
 };
 
 // noinspection JSUnusedGlobalSymbols
