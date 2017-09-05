@@ -34,10 +34,10 @@ String.prototype.repeat = function(count: number) {
   let str = String(this);
   
   if (str.length == 0 || count == 0) {
-    return '';
+    return "";
   }
   
-  let rpt = '';
+  let rpt = "";
   for (let i = 0; i < count; i++) {
     rpt += str;
   }
