@@ -23,7 +23,7 @@ function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], c
   file.open("e");
   
   let content = file.read();
-  content = pravdomilExportOptimizeHead(opt, file, content);
+  content = pravdomilExportFilterHead(opt, file, content);
   content = content.substr(0, content.indexOf("<body"));
   content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">';
   content += contents.join("");
@@ -51,7 +51,7 @@ function get_body(file: File) {
 
 function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
   let content = readFile(opt.files[i]);
-  content = pravdomilExportOptimizeHead(opt, i, content);
+  content = pravdomilExportFilterHead(opt, i, content);
   content = pravdomilExportOptimizeBody(opt, i, content);
   saveFile(opt.files[i], content);
 }
@@ -60,7 +60,7 @@ function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, i: number, con
   return pravdomilExportOptimizeDo(opt, i, content, /<body.*$/, opt.bodyFilters);
 }
 
-function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, i: number, content: string) {
+function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string) {
   return pravdomilExportOptimizeDo(opt, i, content, /<head>.*<\/head>/, opt.headFilters);
 }
 
