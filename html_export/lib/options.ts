@@ -1,6 +1,6 @@
 function pravdomilExportOptionsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
-  let opt = myJSONParse(label) as PravdomilExportOptions;
+  let opt = myJSONParse(label) as PravdomilExportOptionsSettings;
   if(typeof opt != "object") {
     opt = {};
   }
@@ -12,13 +12,13 @@ function pravdomilExportOptionsGet(doc: Document) {
   return opt
 }
 
-function pravdomilExportOptionsSave(doc: Document, opt: object) {
+function pravdomilExportOptionsSave(doc: Document, opt: PravdomilExportOptionsSettings) {
   let label = myJSONStringify(opt);
   doc.insertLabel("pravdomil_html_export", label)
 }
 
-function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | undefined {  
-  let opt = pravdomilExportOptionsGet(doc);
+function pravdomilExportOptionsDialog(opt: PravdomilExportOptions): true | undefined {  
+  opt.settings = pravdomilExportOptionsGet(opt.document);
   
   let dialog = new Window("dialog", "Pravdomil HTML Export");
   dialog.alignChildren = "fill";
@@ -28,27 +28,27 @@ function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | u
   pagesPanel.orientation = "row";
   pagesPanel.text = "Pages";
   let allPages = pagesPanel.add("radiobutton", undefined, "All Pages") as RadioButton;
-  allPages.value = !Boolean(opt.onlyCurrentPage);
+  allPages.value = !Boolean(opt.settings.onlyCurrentPage);
   let onlyCurrentPage = pagesPanel.add("radiobutton", undefined, "Current Page") as RadioButton;
-  onlyCurrentPage.value = Boolean(opt.onlyCurrentPage);
+  onlyCurrentPage.value = Boolean(opt.settings.onlyCurrentPage);
   
   let outputPanel = dialog.add("panel") as Panel;
   outputPanel.margins = 20;
   outputPanel.orientation = "row";
   outputPanel.text = "Output";
   let splitPages = outputPanel.add("radiobutton", undefined, "Split Pages") as RadioButton;
-  splitPages.value = !Boolean(opt.mergePages);
+  splitPages.value = !Boolean(opt.settings.mergePages);
   let mergePages = outputPanel.add("radiobutton", undefined, "Merge Pages") as RadioButton;
-  mergePages.value = Boolean(opt.mergePages);
+  mergePages.value = Boolean(opt.settings.mergePages);
   
   let optionsPanel = dialog.add("panel") as Panel;
   optionsPanel.margins = 20;
   optionsPanel.text = "Options";
   optionsPanel.alignChildren = "left";
-  let versioning = optionsPanel.add("checkbox", undefined, "Versioning") as CheckBox;
-  versioning.value = Boolean(opt.versioning);
-  let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files") as CheckBox;
-  keepFontFiles.value = Boolean(opt.keepFontFiles);
+  let versioning = optionsPanel.add("checkbox", undefined, "Versioning") as RadioButton; // bug
+  versioning.value = Boolean(opt.settings.versioning);
+  let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files") as RadioButton; // bug
+  keepFontFiles.value = Boolean(opt.settings.keepFontFiles);
   
   let group = dialog.add("group") as Group;
   group.alignment = "right";
@@ -56,18 +56,18 @@ function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | u
   group.add("button", undefined, "OK");
   
   if(dialog.show() == 1) {
-    opt.onlyCurrentPage = onlyCurrentPage.value;
-    opt.mergePages = mergePages.value;
-    opt.versioning = versioning.value;
-    opt.keepFontFiles = keepFontFiles.value;
+    opt.settings.onlyCurrentPage = onlyCurrentPage.value;
+    opt.settings.mergePages = mergePages.value;
+    opt.settings.versioning = versioning.value;
+    opt.settings.keepFontFiles = keepFontFiles.value;
     
     let path;
-    let outputFile = new File(opt.outputFile);
-    if(opt.outputFile && outputFile.parent.exists) {
+    let outputFile = new File(opt.settings.outputFile);
+    if(opt.settings.outputFile && outputFile.parent.exists) {
       path = outputFile.saveDlg()
     }
-    else if(doc.saved) {
-      path = new File(doc.fullName.fullName.replace(/\.indd$/, ".html")).saveDlg()
+    else if(opt.document.saved) {
+      path = new File(opt.document.fullName.fullName.replace(/\.indd$/, ".html")).saveDlg()
     }
     else {
       path = File.saveDialog()
@@ -76,11 +76,12 @@ function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | u
       return
     }
     else {
-      if(path.name.substr(-5) !== ".html") { path += ".html" }
-      opt.outputFile = path
+      let p = String(path);
+      if(p.substr(-5) !== ".html") { p += ".html" }
+      opt.settings.outputFile = p
     }
     
-    pravdomilExportOptionsSave(doc, opt);
-    return opt
+    pravdomilExportOptionsSave(opt.document, opt.settings);
+    return true
   }
 }

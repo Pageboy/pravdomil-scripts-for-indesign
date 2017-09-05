@@ -6,7 +6,7 @@
 
 app.doScript(pravdomilExport, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "Pravdomil HTML Export");
 
-interface PravdomilExportOptions {
+interface PravdomilExportOptionsSettings {
   onlyCurrentPage?: boolean;
 
   mergePages?: boolean;
@@ -17,21 +17,30 @@ interface PravdomilExportOptions {
   outputFile?: string;
 }
 
-function pravdomilExport() {
-  if(!app.documents.length) { return }
-  
-  let doc = app.activeDocument;
-  let opt = pravdomilExportOptionsDialog(doc);
-  if(!opt) { return }
-  
-  let file = new File(opt.outputFile);
-  if(opt.versioning) {
+interface PravdomilExportOptions {
+  document: Document;
+  settings: PravdomilExportOptionsSettings;
+}
+
+function pravdomilExport(paramOpt?: Partial<PravdomilExportOptions>) {
+  let opt: PravdomilExportOptions = paramOpt as PravdomilExportOptions;
+
+  if(!opt.document) {
+    if(!app.documents.length) { return }
+    opt.document = app.activeDocument
+  }
+  if(!opt.settings) {
+    pravdomilExportOptionsDialog(opt);
+  }
+
+  let file = new File(opt.settings.outputFile);
+  if(opt.settings.versioning) {
     file = new File(file.parent + "/" + versionString() + "/" + file.displayName);
     if(!file.parent.exists) { file.parent.create() }
   }
   
-  let exportPref = doc.htmlFXLExportPreferences;
-  if(opt.onlyCurrentPage) {
+  let exportPref = opt.document.htmlFXLExportPreferences;
+  if(opt.settings.onlyCurrentPage) {
     exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_PAGE_RANGE;
     exportPref.epubPageRange = app.activeWindow.activePage.name
   }
@@ -39,18 +48,17 @@ function pravdomilExport() {
     exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_ALL_PAGES
   }
   
-  doc.exportFile(ExportFormat.HTMLFXL, file, true);
+  opt.document.exportFile(ExportFormat.HTMLFXL, file, true);
   
   let files = [file];
-  for(let i = 1; i < doc.pages.length; i++) {
+  for(let i = 1; i < opt.document.pages.length; i++) {
     let f = new File(file.parent + "/" + file.nameWithoutExt() + "-" + i + ".html");
     files.push(f)
   }
   
-  optimize_html(doc, files, opt);
+  optimize_html(opt.document, files, opt);
   
   let currentFile = files[(app.activeWindow.activePage.name - 1) | 0];
-  if(opt.onlyCurrentPage || opt.mergePages) { currentFile = file[0] }
   
   openFile(file);
 }
