@@ -37,6 +37,7 @@ function pravdomilExportOptionsDialog(doc: Document) {
   dialog.alignChildren = "fill";
   
   let pagesPanel = dialog.add("panel") as Panel;
+  pagesPanel.margins = 20;
   pagesPanel.orientation = "row";
   pagesPanel.text = "Pages";
   let allPages = pagesPanel.add("radiobutton", undefined, "All Pages");
