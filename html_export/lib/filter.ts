@@ -66,7 +66,7 @@ function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, conte
 
 function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, regex: RegExp, filters: PravdomilExportFilter[]) {
   let match = content.match(regex);
-
+  
   if(match) {
     let str = match[0];
     
