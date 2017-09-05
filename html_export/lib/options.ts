@@ -85,7 +85,9 @@ function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | u
     else {
       path = File.saveDialog()
     }
-    if(!path) { return }
+    if(!path) {
+      return
+    }
     else {
       if(path.name.substr(-5) !== ".html") { path += ".html" }
       opt.outputFile = path
