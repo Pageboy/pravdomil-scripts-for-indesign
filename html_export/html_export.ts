@@ -35,7 +35,7 @@ function pravdomilExport() {
     let f = new File(file.parent + "/" + file.nameWithoutExt() + "-" + i + ".html");
     files.push(f)
   }
-
+  
   optimize_html(doc, files, opt);
   
   let currentFile = files[(app.activeWindow.activePage.name - 1) | 0];
