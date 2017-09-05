@@ -73,16 +73,18 @@ function optimize_body(doc: Document, opt: PravdomilExportOptions, file: File, c
 }
 
 function optimize_head(doc: Document, opt: PravdomilExportOptions, file: File, content: string) {
-  let head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
-    '\t\t<meta name="viewport" content="width=device-width" />\n' +
-    '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +
-    '\t\t<script>window.top.shouldNavigate = function() { return true }</script>\n' +
-    '\t\t<script>window.top.onFrameDOMLoaded = function() { return true }</script>\n' +
-    '\t\t<script>function press(innerText) { var buttons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < buttons.length; i++) { var button = buttons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("Event"); evt.initEvent("ontouchend" in document.documentElement ? "touchend" : "mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>\n';
+  let head = [
+    '<title>' + doc.fullName.nameWithoutExt() + '</title>',
+    '<meta name="viewport" content="width=device-width" />',
+    '<script>window.top.isPreviewFile = function() { return {} }</script>',
+    '<script>window.top.shouldNavigate = function() { return true }</script>',
+    '<script>window.top.onFrameDOMLoaded = function() { return true }</script>',
+    '<script>function press(innerText) { var buttons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < buttons.length; i++) { var button = buttons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("Event"); evt.initEvent("ontouchend" in document.documentElement ? "touchend" : "mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>'
+  ];
   
   if(!opt.keepFontFiles) {
     content = content.replace('<script src="' + file.nameWithoutExt() + '-web-resources/script/FontData.js" type="text/javascript"></script>', '')
   }
   
-  return content.replace(/<title>[^<]*<\/title>/, head)
+  return content.replace(/<title>[^<]*<\/title>/, head.join("\n\t\t"))
 }
