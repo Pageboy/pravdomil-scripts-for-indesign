@@ -4,7 +4,7 @@ interface PravdomilExportOptionsSettings {
 
 function pravdomilExportKeepFontFiles(opt: PravdomilExportOptions) {
   if(!opt.settings.keepFontFiles) {
-    let path = opt.files[0].parent + "/" + opt.files[0].nameWithoutExt() + "-web-resources/script/FontData.js";
+    let path = opt.file.parent + "/" + opt.file.nameWithoutExt() + "-web-resources/script/FontData.js";
     let file = new File(path);
     if(file.exists) {
       file.remove();
