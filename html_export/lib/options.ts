@@ -49,9 +49,9 @@ function pravdomilExportOptionsDialog(doc: Document) {
   outputPanel.margins = 20;
   outputPanel.orientation = "row";
   outputPanel.text = "Output";
-  let splitPages = outputPanel.add("radiobutton", undefined, "Split Pages");
+  let splitPages = outputPanel.add("radiobutton", undefined, "Split Pages") as RadioButton;
   splitPages.value = !Boolean(opt.mergePages);
-  let mergePages = outputPanel.add("radiobutton", undefined, "Merge Pages");
+  let mergePages = outputPanel.add("radiobutton", undefined, "Merge Pages") as RadioButton;
   mergePages.value = Boolean(opt.mergePages);
   
   let optionsPanel = dialog.add("panel") as Panel;
