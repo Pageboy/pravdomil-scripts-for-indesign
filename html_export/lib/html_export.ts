@@ -15,7 +15,7 @@ interface PravdomilExportOptions {
 }
 
 function pravdomilHTMLExport(paramOpt?: Partial<PravdomilExportOptions>) {
-  let opt: PravdomilExportOptions = paramOpt as PravdomilExportOptions;
+  let opt: PravdomilExportOptions = (typeof paramOpt == "object" ? paramOpt : {}) as PravdomilExportOptions;
   
   if(!opt.document) {
     if(!app.documents.length) { return }
