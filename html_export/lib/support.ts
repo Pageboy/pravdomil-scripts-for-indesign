@@ -12,6 +12,13 @@ function getBgColor(document: Document) {
   return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
 }
 
+function getActivePage() {
+  if(app.activeWindow instanceof LayoutWindow) {
+    return parseInt(app.activeWindow.activePage.name)
+  }
+  return 0;
+}
+
 function myJSONParse(str: string): any {
   try {
     return eval(str);
