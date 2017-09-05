@@ -83,7 +83,7 @@ function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | u
       path = new File(doc.fullName.fullName.replace(/\.indd$/, ".html")).saveDlg()
     }
     else {
-      path = File.openDialog()
+      path = File.saveDialog()
     }
     if(!path) { return }
     else {
