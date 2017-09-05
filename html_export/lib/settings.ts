@@ -12,7 +12,7 @@ function pravdomilExportSettingsGet(doc: Document) {
   return opt
 }
 
-function pravdomilExportOptionsSave(doc: Document, opt: PravdomilExportOptionsSettings) {
+function pravdomilExportSettingsSave(doc: Document, opt: PravdomilExportOptionsSettings) {
   let label = myJSONStringify(opt);
   doc.insertLabel("pravdomil_html_export", label)
 }
@@ -81,7 +81,7 @@ function pravdomilExportOptionsDialog(opt: PravdomilExportOptions): true | undef
       opt.settings.outputFile = p
     }
     
-    pravdomilExportOptionsSave(opt.document, opt.settings);
+    pravdomilExportSettingsSave(opt.document, opt.settings);
     return true
   }
 }
