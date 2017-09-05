@@ -27,21 +27,19 @@ function press(innerText) {
     }
   }
 }
-</script>
-`;
+</script>`;
   
   head += `
 <script>
 window.top.isPreviewFile = function() { return {} };
 window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
-</script>
-`;
+</script>`;
+  
   head += `
 <style>
 html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
-</style>
-`;
+</style>`;
   
   return head;
 }
