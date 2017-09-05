@@ -57,25 +57,37 @@ function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
 }
 
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportDoFilter(opt, i, content, /<body[\s\S]*/, opt.bodyFilters);
+  return pravdomilExportDoFilter(opt, i, content, ['<body'], opt.bodyFilters);
 }
 
 function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportDoFilter(opt, i, content, /<head>[\s\S]*<\/head>/, opt.headFilters);
+  return pravdomilExportDoFilter(opt, i, content, ['<head>', '</head>'], opt.headFilters);
 }
 
-function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, regex: RegExp, filters: PravdomilExportFilter[]) {
-  let match = content.match(regex);
-  
-  if(match) {
-    let str = match[0];
-    
-    for(let filter of filters) {
-      str = filter(opt, i, str);
-    }
-    
-    return content.replace(regex, str)
+function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, match: string[], filters: PravdomilExportFilter[]) {
+  let start = content.indexOf(match[0]);
+  if(start == -1) {
+    return content;
   }
   
-  return content;
+  let end = content.indexOf(match[1]);
+  
+  let str;
+  if(end == -1) {
+    str = content.substr(start);
+  }
+  else {
+    str = content.substr(start + match[0].length, end - start - match[0].length);
+  }
+  
+  for(let filter of filters) {
+    str = filter(opt, i, str);
+  }
+  
+  if(end == -1) {
+    return content.substr(0, start) + str;
+  }
+  else {
+    return content.substr(0, start + match[0].length) + str + content.substr(end);
+  }
 }
