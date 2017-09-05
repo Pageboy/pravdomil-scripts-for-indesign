@@ -5,7 +5,7 @@
 //@include "./lib/settings.js"
 //@include "./lib/versioning.js"
 //@include "./lib/export.js"
-//@include "./lib/optimize.js"
+//@include "./lib/filter.js"
 //@include "./lib/keep_font.js"
 //@include "./lib/base_filters.js"
 
