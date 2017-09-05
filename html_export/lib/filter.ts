@@ -57,11 +57,11 @@ function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
 }
 
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportDoFilter(opt, i, content, /<body.*$/, opt.bodyFilters);
+  return pravdomilExportDoFilter(opt, i, content, /<body[\s\S]*/, opt.bodyFilters);
 }
 
 function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportDoFilter(opt, i, content, /<head>.*<\/head>/, opt.headFilters);
+  return pravdomilExportDoFilter(opt, i, content, /<head>[\s\S]*<\/head>/, opt.headFilters);
 }
 
 function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, regex: RegExp, filters: PravdomilExportFilter[]) {
