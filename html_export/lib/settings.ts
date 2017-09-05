@@ -79,11 +79,9 @@ function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | unde
     if(!path) {
       return
     }
-    else {
-      let p = String(path);
-      if(p.substr(-5) !== ".html") { p += ".html" }
-      opt.settings.outputFile = p
-    }
+    let p = String(path);
+    if(p.substr(-5) !== ".html") { p += ".html" }
+    opt.settings.outputFile = p
     
     pravdomilExportSettingsSave(opt.document, opt.settings);
     return true
