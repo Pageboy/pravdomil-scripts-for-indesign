@@ -25,9 +25,8 @@ function trace(obj: any) {
 function getActivePage() {
   if(app.activeWindow instanceof LayoutWindow) {
     let value = parseInt(app.activeWindow.activePage.name);
-    return isNaN(value) ? 0 : value;
+    return isNaN(value) ? undefined : value - 1;
   }
-  return 0;
 }
 
 function readFile(file: File) {

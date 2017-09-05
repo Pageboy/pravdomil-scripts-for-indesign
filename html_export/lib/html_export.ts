@@ -9,7 +9,7 @@ interface PravdomilExportOptions {
   settings: PravdomilExportOptionsSettings;
   showSettingsDialog: boolean;
   openAfterExport: boolean;
-  activePage: number;
+  activePage: number | undefined;
   name: string;
   file: File;
   files: File[];
