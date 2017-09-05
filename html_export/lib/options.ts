@@ -90,7 +90,7 @@ function pravdomilExportOptionsDialog(doc: Document) {
       if(path.name.substr(-5) !== ".html") { path += ".html" }
       opt.outputFile = path
     }
-
+    
     pravdomilExportOptionsSave(doc, opt);
     return opt
   }
