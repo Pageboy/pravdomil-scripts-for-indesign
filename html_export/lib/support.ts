@@ -14,7 +14,8 @@ function getBgColor(document: Document) {
 
 function getActivePage() {
   if(app.activeWindow instanceof LayoutWindow) {
-    return parseInt(app.activeWindow.activePage.name)
+    let value = parseInt(app.activeWindow.activePage.name);
+    return isNaN(value) ? 0 : value;
   }
   return 0;
 }
