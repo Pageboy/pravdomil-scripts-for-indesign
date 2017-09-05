@@ -45,7 +45,7 @@ html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
 }
 
 // noinspection JSUnusedLocalSymbols
-function pravdomilExportBaseBodyFilter(opt: PravdomilExportOptions, i: number, body: string) {
+function pravdomilExportBaseBodyFilter(opt: PravdomilExportOptions, i: number, str: string) {
   
-  return body;
+  return str;
 }
