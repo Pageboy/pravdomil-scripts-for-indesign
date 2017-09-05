@@ -57,14 +57,14 @@ function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
 }
 
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportOptimizeDo(opt, i, content, /<body.*$/, opt.bodyFilters);
+  return pravdomilExportDoFilter(opt, i, content, /<body.*$/, opt.bodyFilters);
 }
 
 function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportOptimizeDo(opt, i, content, /<head>.*<\/head>/, opt.headFilters);
+  return pravdomilExportDoFilter(opt, i, content, /<head>.*<\/head>/, opt.headFilters);
 }
 
-function pravdomilExportOptimizeDo(opt: PravdomilExportOptions, i: number, content: string, regex: RegExp, filters: PravdomilExportFilter[]) {
+function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, regex: RegExp, filters: PravdomilExportFilter[]) {
   let match = content.match(regex);
 
   if(match) {
