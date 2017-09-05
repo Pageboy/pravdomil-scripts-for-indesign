@@ -62,18 +62,18 @@ function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, co
 }
 
 function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, file: File, content: string) {
-  let head = [
-    '<title>' + opt.document.name.replace(/\.indd/, "") + '</title>',
-    '<meta name="viewport" content="width=device-width" />',
-    '<script>window.top.isPreviewFile = function() { return {} }</script>',
-    '<script>window.top.shouldNavigate = function() { return true }</script>',
-    '<script>window.top.onFrameDOMLoaded = function() { return true }</script>',
-    '<script>function press(innerText) { var buttons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < buttons.length; i++) { var button = buttons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("Event"); evt.initEvent("ontouchend" in document.documentElement ? "touchend" : "mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>'
-  ];
+  let regex = /<head>.*<\/head>/;
+  let match = content.match(regex);
   
-  if(!opt.settings.keepFontFiles) {
-    content = content.replace('<script src="' + file.nameWithoutExt() + '-web-resources/script/FontData.js" type="text/javascript"></script>', '')
+  if(match) {
+    let head = match[0];
+    
+    for(let filter of opt.headFilters) {
+      head = filter(opt, i, head);
+    }
+    
+    return content.replace(regex, head)
   }
   
-  return content.replace(/<title>[^<]*<\/title>/, head.join("\n\t\t"))
+  return content;
 }

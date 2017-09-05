@@ -7,5 +7,6 @@
 //@include "./lib/export.js"
 //@include "./lib/optimize.js"
 //@include "./lib/keep_font.js"
+//@include "./lib/base_filters.js"
 
 app.doScript(pravdomilHTMLExport, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "Pravdomil HTML Export");

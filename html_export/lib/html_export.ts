@@ -48,6 +48,8 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
 
   pravdomilExportKeepFontFiles(opt);
   
+  pravdomilExportBaseFilters(opt);
+  
   pravdomilExportOptimize(opt);
   
   if(opt.openAfterExport) {
