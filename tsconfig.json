@@ -4,7 +4,8 @@
     "target": "es3",
     "outDir": "js",
     "noLib": true,
-    "strict": true
+    "strict": true,
+    "types": ["types-for-adobe/ScriptUI", "types-for-adobe/InDesign/2015.3"]
   },
   "exclude": [
     "node_modules"

@@ -1,5 +1,3 @@
-/// <reference path="../node_modules/types-for-adobe/InDesign/2015.3/index.d.ts" />
-
 function rembasedApply(object: PageItem, deltaX: number, deltaY: number, resize: boolean) {
   // [y1, x1, y2, x2]
   let bounds = object.visibleBounds as [number, number, number, number];
