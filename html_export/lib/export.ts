@@ -16,6 +16,12 @@ function pravdomilExport(opt: PravdomilExportOptions) {
   }
   
   opt.document.exportFile(ExportFormat.HTMLFXL, opt.file, true);
+
+  opt.files = [opt.file];
+  for(let i = 1; i < opt.document.pages.length; i++) {
+    let f = new File(opt.file.parent + "/" + opt.file.nameWithoutExt() + "-" + i + ".html");
+    opt.files.push(f)
+  }
   
   return true;
 }

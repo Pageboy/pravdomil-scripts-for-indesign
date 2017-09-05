@@ -10,6 +10,7 @@ interface PravdomilExportOptions {
   settings: PravdomilExportOptionsSettings;
   showSettingsDialog: boolean;
   file: File;
+  files: File[];
 }
 
 function pravdomilHTMLExport(options?: PravdomilExportOptions) {
@@ -26,6 +27,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
       settings: {},
       showSettingsDialog: true,
       file: new File(),
+      files: [],
     }
   }
   
@@ -34,13 +36,6 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   if(opt.showSettingsDialog && !pravdomilExportSettingsDialog(opt)) { return; }
   if(!pravdomilExportVersioning(opt)) { return; }
   if(!pravdomilExport(opt)) { return; }
-  
-  
-  let files = [file];
-  for(let i = 1; i < opt.document.pages.length; i++) {
-    let f = new File(file.parent + "/" + file.nameWithoutExt() + "-" + i + ".html");
-    files.push(f)
-  }
   
   optimize_html(opt.document, files, opt);
   
