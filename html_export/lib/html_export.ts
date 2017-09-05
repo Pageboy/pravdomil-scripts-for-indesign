@@ -17,15 +17,25 @@ interface PravdomilExportOptions {
   showSettingsDialog: boolean;
 }
 
-function pravdomilHTMLExport(paramOpt?: Partial<PravdomilExportOptions>) {
-  let opt: PravdomilExportOptions = (typeof paramOpt == "object" ? paramOpt : {}) as PravdomilExportOptions;
+function pravdomilHTMLExport(options?: PravdomilExportOptions) {
+  let opt: PravdomilExportOptions;
   
-  if(!opt.document) {
-    if(!app.documents.length) { return }
-    opt.document = app.activeDocument
+  if(options) {
+    opt = options;
   }
-  if(!opt.settings) {
-    pravdomilExportSettingsDialog(opt);
+  else {
+    if(!app.documents.length) { return }
+    opt = {
+      document: app.activeDocument,
+      settings: {},
+      showSettingsDialog: true,
+    }
+  }
+  
+  pravdomilExportSettingsDefault(opt.settings);
+  
+  if(opt.showSettingsDialog && !pravdomilExportSettingsDialog(opt)) {
+    return;
   }
   
   let file = new File(opt.settings.outputFile);
