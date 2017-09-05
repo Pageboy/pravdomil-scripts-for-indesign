@@ -45,10 +45,10 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   if(!pravdomilExportVersioning(opt)) { return; }
   
   if(!pravdomilExport(opt)) { return; }
+
+  pravdomilExportKeepFontFiles(opt);
   
   pravdomilExportOptimize(opt);
-  
-  pravdomilExportKeepFontFiles(opt);
   
   if(opt.openAfterExport) {
     let file = opt.files[Math.max(0, opt.activePage - 1)];
