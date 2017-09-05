@@ -1,15 +1,11 @@
-function pravdomilExportSettingsGet(doc: Document) {
+function pravdomilExportSettingsGet(doc: Document, settings: PravdomilExportOptionsSettings) {
   let label = doc.extractLabel("pravdomil_html_export");
-  let settings = myJSONParse(label) as PravdomilExportOptionsSettings;
-  if(typeof settings != "object") {
-    settings = {};
+  let data = myJSONParse(label);
+  if(typeof data == "object") {
+    for(let key in data) {
+      settings[key] = data[key];
+    }
   }
-  
-  if(settings.keepFontFiles == undefined) {
-    settings.keepFontFiles = true;
-  }
-  
-  return settings
 }
 
 function pravdomilExportSettingsSave(document: Document, settings: PravdomilExportOptionsSettings) {
@@ -18,7 +14,7 @@ function pravdomilExportSettingsSave(document: Document, settings: PravdomilExpo
 }
 
 function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | undefined {  
-  opt.settings = pravdomilExportSettingsGet(opt.document);
+  pravdomilExportSettingsGet(opt.document, opt.settings);
   
   let dialog = new Window("dialog", "Pravdomil HTML Export");
   dialog.alignChildren = "fill";
