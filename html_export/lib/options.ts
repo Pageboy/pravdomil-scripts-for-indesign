@@ -61,7 +61,7 @@ function pravdomilExportOptionsDialog(doc: Document) {
   let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files") as CheckBox;
   keepFontFiles.value = Boolean(opt.keepFontFiles);
   
-  let group = dialog.add("group");
+  let group = dialog.add("group") as Group;
   group.alignment = "right";
   group.add("button", undefined, "Cancel");
   group.add("button", undefined, "OK");
