@@ -20,6 +20,25 @@ function getActivePage() {
   return 0;
 }
 
+function readFile(file: File) {
+  file.lineFeed = 'Unix';
+  file.encoding = 'UTF-8';
+  file.open('r');
+  file.seek(0);
+  let content = file.read();
+  file.close();
+  return content;
+}
+
+function saveFile(file: File, content: string) {
+  file.lineFeed = 'Unix';
+  file.encoding = 'UTF-8';
+  file.open('w');
+  file.seek(0);
+  file.write(content);
+  file.close()
+}
+
 function myJSONParse(str: string): any {
   try {
     return eval(str);

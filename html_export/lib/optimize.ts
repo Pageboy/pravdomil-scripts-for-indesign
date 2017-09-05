@@ -14,8 +14,8 @@ function pravdomilExportOptimize(opt: PravdomilExportOptions) {
     merge_file(opt.document, opt, opt.files, contents)
   }
   else {
-    for(let i = 0; i < opt.files.length; i++) {
-      optimize_file(opt.document, opt, opt.files[i])
+    for(let file of opt.files) {
+      pravdomilExportOptimizeFile(opt, file);
     }
   }
 }
@@ -27,7 +27,7 @@ function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], c
   file.open('e');
   
   let content = file.read();
-  content = optimize_head(doc, opt, file, content);
+  content = pravdomilExportOptimizeHead(opt, file, content);
   content = content.substr(0, content.indexOf('<body'));
   content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">';
   content += contents.join('');
@@ -53,28 +53,22 @@ function get_body(file: File) {
   return div
 }
 
-function optimize_file(doc: Document, opt: PravdomilExportOptions, file: File) {
-  file.lineFeed = 'Unix';
-  file.encoding = 'UTF-8';
-  file.open('e');
-  
-  let content = file.read();
-  content = optimize_head(doc, opt, file, content);
-  content = optimize_body(doc, opt, file, content);
-  
-  file.seek(0);
-  file.write(content);
-  file.close()
+function pravdomilExportOptimizeFile(opt: PravdomilExportOptions, file: File) {
+  let content = readFile(file);
+  content = pravdomilExportOptimizeHead(opt, file, content);
+  content = pravdomilExportOptimizeBody(opt, file, content);
+  saveFile(file, content);
 }
 
-function optimize_body(doc: Document, opt: PravdomilExportOptions, file: File, content: string) {
-  let extraStyle = 'margin: auto; position: relative; background-color: rgb(' + getBgColor(doc).join(', ') + '); ';
+function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, content: string) {
+  let bg = getBgColor(opt.document).join(', ');
+  let extraStyle = 'margin: auto; position: relative; background-color: rgb(' + bg + '); ';
   return content.replace('style="', 'style="' + extraStyle)
 }
 
-function optimize_head(doc: Document, opt: PravdomilExportOptions, file: File, content: string) {
+function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, file: File, content: string) {
   let head = [
-    '<title>' + doc.fullName.nameWithoutExt() + '</title>',
+    '<title>' + opt.document.fullName.nameWithoutExt() + '</title>',
     '<meta name="viewport" content="width=device-width" />',
     '<script>window.top.isPreviewFile = function() { return {} }</script>',
     '<script>window.top.shouldNavigate = function() { return true }</script>',
