@@ -31,8 +31,8 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   
   pravdomilExportSettingsDefaults(opt.settings);
   if(opt.showSettingsDialog && !pravdomilExportSettingsDialog(opt)) { return; }
+  if(!pravdomilExportVersioning(opt)) { return; }
   
-  pravdomilExportVersioning(opt);
   let files = [file];
   for(let i = 1; i < opt.document.pages.length; i++) {
     let f = new File(file.parent + "/" + file.nameWithoutExt() + "-" + i + ".html");
