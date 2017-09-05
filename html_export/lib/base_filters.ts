@@ -16,7 +16,7 @@ function press(innerText) {
   var buttons = document.querySelectorAll('._idGenButton');
   for(var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
-    var match = button.textContent.replace(/\\s/g, '') === innerText;
+    var match = button.textContent.replace(/\\s/g, '') == innerText;
     if(match) {
       var evt = document.createEvent("Event");
       var name = "ontouchend" in document.documentElement ? "touchend" : "mouseup";
