@@ -1,15 +1,15 @@
 function pravdomilExportSettingsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
-  let opt = myJSONParse(label) as PravdomilExportOptionsSettings;
-  if(typeof opt != "object") {
-    opt = {};
+  let settings = myJSONParse(label) as PravdomilExportOptionsSettings;
+  if(typeof settings != "object") {
+    settings = {};
   }
   
-  if(opt.keepFontFiles == undefined) {
-    opt.keepFontFiles = true;
+  if(settings.keepFontFiles == undefined) {
+    settings.keepFontFiles = true;
   }
   
-  return opt
+  return settings
 }
 
 function pravdomilExportSettingsSave(doc: Document, opt: PravdomilExportOptionsSettings) {
