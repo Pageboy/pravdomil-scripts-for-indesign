@@ -1,7 +1,6 @@
 interface PravdomilExportOptionsSettings {
   onlyCurrentPage?: boolean;
   mergePages?: boolean;
-  keepFontFiles?: boolean;
   outputFile?: string;
 }
 
@@ -44,6 +43,8 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   if(!pravdomilExport(opt)) { return; }
   
   pravdomilExportOptimize(opt);
+  
+  pravdomilExportKeepFontFiles(opt);
   
   if(opt.openAfterExport) {
     let file = opt.files[Math.max(0, opt.activePage - 1)];
