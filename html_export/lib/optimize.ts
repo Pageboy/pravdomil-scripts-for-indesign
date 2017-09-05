@@ -63,7 +63,7 @@ function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, co
 
 function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, file: File, content: string) {
   let head = [
-    '<title>' + opt.document.name + '</title>',
+    '<title>' + opt.document.name.replace(/\.indd/, "") + '</title>',
     '<meta name="viewport" content="width=device-width" />',
     '<script>window.top.isPreviewFile = function() { return {} }</script>',
     '<script>window.top.shouldNavigate = function() { return true }</script>',
