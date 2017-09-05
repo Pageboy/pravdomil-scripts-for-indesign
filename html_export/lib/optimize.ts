@@ -1,11 +1,11 @@
-function optimize_html(doc, files, opt) {
+function optimize_html(doc: Document, files: File[], opt: PravdomilExportOptions) {
   if(!opt.keepFontFiles) {
     let fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js');
     if(fontFile.exists) { fontFile.remove() }
   }
   
   if(opt.mergePages) {
-    let contents = [];
+    let contents: string[] = [];
     for(let i = 0; i < files.length; i++) {
       contents.push(get_body(files[i]));
       if(i > 0) { files[i].remove() }
@@ -20,7 +20,7 @@ function optimize_html(doc, files, opt) {
   }
 }
 
-function merge_file(doc, opt, files, contents) {
+function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], contents: string[]) {
   let file = files[0];
   file.lineFeed = 'Unix';
   file.encoding = 'UTF-8';
@@ -37,7 +37,7 @@ function merge_file(doc, opt, files, contents) {
   file.close()
 }
 
-function get_body(file) {
+function get_body(file: File) {
   file.lineFeed = 'Unix';
   file.encoding = 'UTF-8';
   file.open('r');
@@ -53,7 +53,7 @@ function get_body(file) {
   return div
 }
 
-function optimize_file(doc, opt, file) {
+function optimize_file(doc: Document, opt: PravdomilExportOptions, file: File) {
   file.lineFeed = 'Unix';
   file.encoding = 'UTF-8';
   file.open('e');
@@ -67,12 +67,12 @@ function optimize_file(doc, opt, file) {
   file.close()
 }
 
-function optimize_body(doc, opt, file, content) {
+function optimize_body(doc: Document, opt: PravdomilExportOptions, file: File, content: string) {
   let extraStyle = 'margin: auto; position: relative; background-color: rgb(' + getBgColor(doc).join(', ') + '); ';
   return content.replace('style="', 'style="' + extraStyle)
 }
 
-function optimize_head(doc, opt, file, content) {
+function optimize_head(doc: Document, opt: PravdomilExportOptions, file: File, content: string) {
   let head = '<title>' + doc.fullName.nameWithoutExt() + '</title>\n' +
     '\t\t<meta name="viewport" content="width=device-width" />\n' +
     '\t\t<script>window.top.isPreviewFile = function() { return {} }</script>\n' +
