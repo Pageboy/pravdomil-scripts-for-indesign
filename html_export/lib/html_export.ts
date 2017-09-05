@@ -1,3 +1,9 @@
+//@include "./prototype.js"
+//@include "./support.js"
+
+//@include "./settings.js"
+//@include "./optimize.js"
+
 interface PravdomilExportOptionsSettings {
   onlyCurrentPage?: boolean;
 
