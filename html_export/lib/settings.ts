@@ -1,4 +1,4 @@
-function pravdomilExportOptionsGet(doc: Document) {
+function pravdomilExportSettingsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
   let opt = myJSONParse(label) as PravdomilExportOptionsSettings;
   if(typeof opt != "object") {
@@ -18,7 +18,7 @@ function pravdomilExportOptionsSave(doc: Document, opt: PravdomilExportOptionsSe
 }
 
 function pravdomilExportOptionsDialog(opt: PravdomilExportOptions): true | undefined {  
-  opt.settings = pravdomilExportOptionsGet(opt.document);
+  opt.settings = pravdomilExportSettingsGet(opt.document);
   
   let dialog = new Window("dialog", "Pravdomil HTML Export");
   dialog.alignChildren = "fill";
