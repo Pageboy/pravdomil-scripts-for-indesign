@@ -10,7 +10,6 @@ function pravdomilExport() {
   if(!app.documents.length) { return }
   
   let doc = app.activeDocument;
-  
   let opt = pravdomilExportOptionsDialog(doc);
   if(!opt) { return }
   
