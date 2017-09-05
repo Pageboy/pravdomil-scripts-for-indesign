@@ -5,4 +5,4 @@
 //@include "./lib/options.js"
 //@include "./lib/optimize.js"
 
-app.doScript(pravdomilExport, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "Pravdomil HTML Export");
+app.doScript(pravdomilHTMLExport, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "Pravdomil HTML Export");
