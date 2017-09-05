@@ -9,6 +9,7 @@ interface PravdomilExportOptions {
   document: Document;
   settings: PravdomilExportOptionsSettings;
   showSettingsDialog: boolean;
+  file: File;
 }
 
 function pravdomilHTMLExport(options?: PravdomilExportOptions) {
@@ -24,6 +25,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
       document,
       settings: {},
       showSettingsDialog: true,
+      file: new File(),
     }
   }
   
