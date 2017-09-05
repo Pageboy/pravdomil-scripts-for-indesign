@@ -37,15 +37,17 @@ window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
 </script>
 `;
+  head += `
+<style>
+html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
+</style>
+`;
   
   return head;
 }
 
 // noinspection JSUnusedLocalSymbols
 function pravdomilExportBaseBodyFilter(opt: PravdomilExportOptions, i: number, body: string) {
-  let bg = getBgColor(opt.document).join(", ");
-  let extraStyle = "margin: auto; position: relative; background-color: rgb(" + bg + "); ";
-  body = body.replace('style="', 'style="' + extraStyle);
   
   return body;
 }
