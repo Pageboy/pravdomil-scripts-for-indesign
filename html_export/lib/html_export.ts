@@ -14,6 +14,7 @@ interface PravdomilExportOptionsSettings {
 interface PravdomilExportOptions {
   document: Document;
   settings: PravdomilExportOptionsSettings;
+  showSettingsDialog: boolean;
 }
 
 function pravdomilHTMLExport(paramOpt?: Partial<PravdomilExportOptions>) {
