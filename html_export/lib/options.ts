@@ -33,7 +33,7 @@ function pravdomilExportOptionsSave(doc: Document, opt: object) {
 function pravdomilExportOptionsDialog(doc: Document): PravdomilExportOptions | undefined {  
   let opt = pravdomilExportOptionsGet(doc);
   
-  let dialog = new Window("dialog", "Pravdomil Export to HTML");
+  let dialog = new Window("dialog", "Pravdomil HTML Export");
   dialog.alignChildren = "fill";
   
   let pagesPanel = dialog.add("panel") as Panel;
