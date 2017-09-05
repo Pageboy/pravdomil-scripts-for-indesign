@@ -1,16 +1,5 @@
 /// <reference path="../../node_modules/types-for-adobe/ScriptUI/index.d.ts" />
 
-interface PravdomilExportOptions {
-  onlyCurrentPage?: boolean;
-  
-  mergePages?: boolean;
-  
-  keepFontFiles?: boolean;
-  versioning?: boolean;
-  
-  outputFile?: string;
-}
-
 function pravdomilExportOptionsGet(doc: Document) {
   let label = doc.extractLabel("pravdomil_html_export");
   let opt = myJSONParse(label) as PravdomilExportOptions;

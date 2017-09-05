@@ -6,6 +6,17 @@
 
 app.doScript(pravdomilExport, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "Pravdomil HTML Export");
 
+interface PravdomilExportOptions {
+  onlyCurrentPage?: boolean;
+
+  mergePages?: boolean;
+
+  keepFontFiles?: boolean;
+  versioning?: boolean;
+
+  outputFile?: string;
+}
+
 function pravdomilExport() {
   if(!app.documents.length) { return }
   
