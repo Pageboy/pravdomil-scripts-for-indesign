@@ -9,8 +9,9 @@ function pravdomilExportOptimize(opt: PravdomilExportOptions) {
     merge_file(opt.document, opt, opt.files, contents)
   }
   else {
+    let i = 0;
     for(let file of opt.files) {
-      pravdomilExportOptimizeFile(opt, file);
+      pravdomilExportOptimizeFile(opt, i++);
     }
   }
 }
@@ -48,11 +49,11 @@ function get_body(file: File) {
   return div
 }
 
-function pravdomilExportOptimizeFile(opt: PravdomilExportOptions, file: File) {
-  let content = readFile(file);
-  content = pravdomilExportOptimizeHead(opt, file, content);
-  content = pravdomilExportOptimizeBody(opt, file, content);
-  saveFile(file, content);
+function pravdomilExportOptimizeFile(opt: PravdomilExportOptions, i: number) {
+  let content = readFile(opt.files[i]);
+  content = pravdomilExportOptimizeHead(opt, i, content);
+  content = pravdomilExportOptimizeBody(opt, i, content);
+  saveFile(opt.files[i], content);
 }
 
 function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, content: string) {
@@ -61,7 +62,7 @@ function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, co
   return content.replace('style="', 'style="' + extraStyle)
 }
 
-function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, file: File, content: string) {
+function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, i: number, content: string) {
   let regex = /<head>.*<\/head>/;
   let match = content.match(regex);
   
