@@ -52,14 +52,14 @@ function pravdomilExportOptionsDialog(doc: Document) {
   let mergePages = group.add("radiobutton", undefined, "Merge Pages");
   mergePages.value = opt.mergePages;
   
-  let group = dialog.add("panel") as Panel;
-  group.alignChildren = "left";
-  group.orientation = "column";
+  let optionsPanel = dialog.add("panel") as Panel;
+  optionsPanel.alignChildren = "left";
+  optionsPanel.orientation = "column";
   
-  let versioning = group.add("checkbox", undefined, "Versioning");
+  let versioning = optionsPanel.add("checkbox", undefined, "Versioning");
   versioning.value = opt.versioning;
   
-  let keepFontFiles = group.add("checkbox", undefined, "Keep Font Files");
+  let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files");
   keepFontFiles.value = opt.keepFontFiles;
   
   let group = dialog.add("group");
