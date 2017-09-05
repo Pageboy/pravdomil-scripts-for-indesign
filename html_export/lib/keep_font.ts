@@ -8,5 +8,12 @@ function pravdomilExportKeepFontFiles(opt: PravdomilExportOptions) {
     if(fontFile.exists) {
       fontFile.remove();
     }
+    
+    opt.headFilters.push(pravdomilExportKeepFontFilesFilter);
   }
+}
+
+function pravdomilExportKeepFontFilesFilter(opt: PravdomilExportOptions, i: number, head: string) {
+  let r = /<script src="[^"]*-web-resources\/script\/FontData.js" type="text\/javascript"><\/script>\s*/;
+  return head.replace(r, "");
 }
