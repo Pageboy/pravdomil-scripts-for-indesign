@@ -1,3 +1,7 @@
+interface PravdomilExportOptionsSettings {
+  versioning?: boolean;
+}
+
 function versioningString() {
   let date = new Date();
   return date.getFullYear().toString().substr(2)

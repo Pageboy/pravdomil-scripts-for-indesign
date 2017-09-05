@@ -2,7 +2,6 @@ interface PravdomilExportOptionsSettings {
   onlyCurrentPage?: boolean;
   mergePages?: boolean;
   keepFontFiles?: boolean;
-  versioning?: boolean;
   outputFile?: string;
 }
 
