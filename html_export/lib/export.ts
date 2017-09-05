@@ -4,7 +4,7 @@ function pravdomilExport(opt: PravdomilExportOptions) {
   if(opt.settings.onlyCurrentPage) {
     if(opt.activePage) {
       exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_PAGE_RANGE;
-      exportPref.epubPageRange = String(opt.activePage);
+      exportPref.epubPageRange = String(opt.activePage + 1);
     }
     else {
       alert("Cannot export current page");
