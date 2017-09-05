@@ -40,10 +40,10 @@ function pravdomilExportOptionsDialog(doc: Document) {
   pagesPanel.margins = 20;
   pagesPanel.orientation = "row";
   pagesPanel.text = "Pages";
-  let allPages = pagesPanel.add("radiobutton", undefined, "All Pages");
-  allPages.value = !opt.onlyCurrentPage;
-  let onlyCurrentPage = pagesPanel.add("radiobutton", undefined, "Current Page");
-  onlyCurrentPage.value = opt.onlyCurrentPage;
+  let allPages = pagesPanel.add("radiobutton", undefined, "All Pages") as RadioButton;
+  allPages.value = !Boolean(opt.onlyCurrentPage);
+  let onlyCurrentPage = pagesPanel.add("radiobutton", undefined, "Current Page") as RadioButton;
+  onlyCurrentPage.value = Boolean(opt.onlyCurrentPage);
   
   let group = dialog.add("panel") as Panel;
   group.orientation = "row";
