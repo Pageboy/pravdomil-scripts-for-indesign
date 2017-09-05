@@ -12,13 +12,6 @@ function getBgColor(doc: Document) {
   return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
 }
 
-function versionString() {
-  let date = new Date();
-  return date.getFullYear().toString().substr(2)
-    + date.getMonth().toString().padStart(2, "0")
-    + date.getDate().toString().padStart(2, "0")
-}
-
 function myJSONParse(str: string): any {
   try {
     return eval(str);
