@@ -54,7 +54,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   
   pravdomilExportBaseFilters(opt);
   
-  pravdomilExportOptimize(opt);
+  pravdomilExportFilterFiles(opt);
   
   if(opt.openAfterExport) {
     let file = opt.files[Math.max(0, opt.activePage - 1)];

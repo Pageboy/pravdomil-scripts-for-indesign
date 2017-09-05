@@ -1,4 +1,4 @@
-function pravdomilExportOptimize(opt: PravdomilExportOptions) {
+function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
   if(opt.settings.mergePages) {
     let contents: string[] = [];
     for(let i = 0; i < opt.files.length; i++) {
