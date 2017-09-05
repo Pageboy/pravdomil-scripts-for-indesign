@@ -17,15 +17,15 @@ function pravdomilExportOptimize(opt: PravdomilExportOptions) {
 
 function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], contents: string[]) {
   let file = files[0];
-  file.lineFeed = 'Unix';
-  file.encoding = 'UTF-8';
-  file.open('e');
+  file.lineFeed = "Unix";
+  file.encoding = "UTF-8";
+  file.open("e");
   
   let content = file.read();
   content = pravdomilExportOptimizeHead(opt, file, content);
-  content = content.substr(0, content.indexOf('<body'));
+  content = content.substr(0, content.indexOf("<body"));
   content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">';
-  content += contents.join('');
+  content += contents.join("");
   
   file.seek(0);
   file.write(content);
@@ -33,17 +33,17 @@ function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], c
 }
 
 function get_body(file: File) {
-  file.lineFeed = 'Unix';
-  file.encoding = 'UTF-8';
-  file.open('r');
+  file.lineFeed = "Unix";
+  file.encoding = "UTF-8";
+  file.open("r");
   
   let content = file.read();
   file.close();
   
-  let start = content.indexOf('<body');
-  let end = content.lastIndexOf('</body>');
+  let start = content.indexOf("<body");
+  let end = content.lastIndexOf("</body>");
   
-  let div = '<div' + content.substr(start + 5, end - start - 5) + '</div>';
+  let div = "<div" + content.substr(start + 5, end - start - 5) + "</div>";
   div = div.replace('style="', 'style="margin: auto; position: relative; ');
   return div
 }
@@ -56,8 +56,8 @@ function pravdomilExportOptimizeFile(opt: PravdomilExportOptions, file: File) {
 }
 
 function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, content: string) {
-  let bg = getBgColor(opt.document).join(', ');
-  let extraStyle = 'margin: auto; position: relative; background-color: rgb(' + bg + '); ';
+  let bg = getBgColor(opt.document).join(", ");
+  let extraStyle = "margin: auto; position: relative; background-color: rgb(" + bg + "); ";
   return content.replace('style="', 'style="' + extraStyle)
 }
 
