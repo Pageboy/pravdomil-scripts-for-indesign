@@ -56,10 +56,10 @@ function pravdomilExportOptionsDialog(doc: Document) {
   optionsPanel.margins = 20;
   optionsPanel.text = "Options";
   optionsPanel.alignChildren = "left";
-  let versioning = optionsPanel.add("checkbox", undefined, "Versioning");
-  versioning.value = opt.versioning;
-  let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files");
-  keepFontFiles.value = opt.keepFontFiles;
+  let versioning = optionsPanel.add("checkbox", undefined, "Versioning") as CheckBox;
+  versioning.value = Boolean(opt.versioning);
+  let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files") as CheckBox;
+  keepFontFiles.value = Boolean(opt.keepFontFiles);
   
   let group = dialog.add("group");
   group.alignment = "right";
