@@ -2,9 +2,9 @@ function pravdomilExport(opt: PravdomilExportOptions) {
   let exportPref = opt.document.htmlFXLExportPreferences;
   
   if(opt.settings.onlyCurrentPage) {
-    if(app.activeWindow instanceof LayoutWindow) {
+    if(opt.activePage) {
       exportPref.epubPageRangeFormat = PageRangeFormat.EXPORT_PAGE_RANGE;
-      exportPref.epubPageRange = app.activeWindow.activePage.name
+      exportPref.epubPageRange = String(opt.activePage);
     }
     else {
       alert("Cannot export current page");
