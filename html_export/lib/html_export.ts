@@ -41,7 +41,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   if(!pravdomilExportVersioning(opt)) { return; }
   if(!pravdomilExport(opt)) { return; }
   
-  optimize_html(opt.document, opt.files, opt);
+  pravdomilExportOptimize(opt.document, opt.files, opt);
   
   if(opt.openAfterExport) {
     let file = opt.files[Math.max(0, opt.activePage - 1)];

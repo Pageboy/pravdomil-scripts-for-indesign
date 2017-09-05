@@ -1,4 +1,4 @@
-function optimize_html(doc: Document, files: File[], opt: PravdomilExportOptions) {
+function pravdomilExportOptimize(doc: Document, files: File[], opt: PravdomilExportOptions) {
   if(!opt.keepFontFiles) {
     let fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js');
     if(fontFile.exists) { fontFile.remove() }
