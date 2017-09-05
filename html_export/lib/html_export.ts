@@ -38,11 +38,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
     return;
   }
   
-  let file = new File(opt.settings.outputFile);
-  if(opt.settings.versioning) {
-    file = new File(file.parent + "/" + versionString() + "/" + file.displayName);
-    if(!file.parent.exists) { file.parent.create() }
-  }
+  versioning(opt);
   
   let exportPref = opt.document.htmlFXLExportPreferences;
   if(opt.settings.onlyCurrentPage) {
