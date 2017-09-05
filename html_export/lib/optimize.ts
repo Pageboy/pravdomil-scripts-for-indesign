@@ -52,11 +52,11 @@ function get_body(file: File) {
 function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
   let content = readFile(opt.files[i]);
   content = pravdomilExportFilterHead(opt, i, content);
-  content = pravdomilExportOptimizeBody(opt, i, content);
+  content = pravdomilExportFilterBody(opt, i, content);
   saveFile(opt.files[i], content);
 }
 
-function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, i: number, content: string) {
+function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string) {
   return pravdomilExportOptimizeDo(opt, i, content, /<body.*$/, opt.bodyFilters);
 }
 
