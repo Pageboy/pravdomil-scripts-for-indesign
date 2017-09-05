@@ -13,9 +13,11 @@ interface PravdomilExportOptions {
   name: string;
   file: File;
   files: File[];
-  headFilters: ((opt: PravdomilExportOptions, i: number, head: string) => string)[];
-  bodyFilters: ((opt: PravdomilExportOptions, i: number, body: string) => string)[];
+  headFilters: PravdomilExportFilter[];
+  bodyFilters: PravdomilExportFilter[];
 }
+
+type PravdomilExportFilter = ((opt: PravdomilExportOptions, i: number, str: string) => string)
 
 function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   let opt: PravdomilExportOptions;
