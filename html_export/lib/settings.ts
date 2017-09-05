@@ -4,7 +4,7 @@ function pravdomilExportSettingsDefault(settings: PravdomilExportOptionsSettings
   }
 }
 
-function pravdomilExportSettingsGet(doc: Document, settings: PravdomilExportOptionsSettings) {
+function pravdomilExportSettingsGet(doc: Document, settings: { [index: string]: any }) {
   let label = doc.extractLabel("pravdomil_html_export");
   let data = myJSONParse(label);
   if(typeof data == "object") {
