@@ -53,6 +53,9 @@ function pravdomilExportOptionsDialog(doc: Document) {
   mergePages.value = opt.mergePages;
   
   let optionsPanel = dialog.add("panel") as Panel;
+  optionsPanel.margins = 20;
+  optionsPanel.orientation = "row";
+  optionsPanel.text = "Options";
   optionsPanel.alignChildren = "left";
   optionsPanel.orientation = "column";
   let versioning = optionsPanel.add("checkbox", undefined, "Versioning");
