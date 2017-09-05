@@ -6,6 +6,7 @@ File.prototype.nameWithoutExt = function() {
   return this.displayName.replace(/\.[^.]+$/, "")
 };
 
+// noinspection JSUnusedGlobalSymbols
 interface String {
   trim(): string;
   padStart(targetLength: number, padString?: string): string;

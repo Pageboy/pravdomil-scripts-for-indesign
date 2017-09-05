@@ -13,6 +13,7 @@ function pravdomilExportKeepFontFiles(opt: PravdomilExportOptions) {
   }
 }
 
+// noinspection JSUnusedLocalSymbols
 function pravdomilExportKeepFontFilesFilter(opt: PravdomilExportOptions, i: number, head: string) {
   let r = /<script src="[^"]*-web-resources\/script\/FontData.js" type="text\/javascript"><\/script>\s*/;
   return head.replace(r, "");

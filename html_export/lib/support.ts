@@ -12,10 +12,12 @@ function getBgColor(document: Document) {
   return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
 }
 
+// noinspection JSUnusedGlobalSymbols
 function trace(obj: any) {
   let out = obj + "\n";
   
   for(let key in obj) {
+    // noinspection JSUnfilteredForInLoop
     out += key + "\t\t" + obj[key] + "\n"
   }
   
