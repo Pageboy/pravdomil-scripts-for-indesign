@@ -1,5 +1,6 @@
 function pravdomilExportBaseFilters(opt: PravdomilExportOptions) {
   opt.headFilters.push(pravdomilExportBaseHeadFilter);
+  opt.headFilters.push(pravdomilExportBaseBodyFilter);
 }
 
 // noinspection JSUnusedLocalSymbols
@@ -34,4 +35,13 @@ function press(innerText) {
 </script>`;
   
   return head;
+}
+
+// noinspection JSUnusedLocalSymbols
+function pravdomilExportBaseBodyFilter(opt: PravdomilExportOptions, i: number, body: string) {
+  let bg = getBgColor(opt.document).join(", ");
+  let extraStyle = "margin: auto; position: relative; background-color: rgb(" + bg + "); ";
+  body = body.replace('style="', 'style="' + extraStyle);
+  
+  return body;
 }
