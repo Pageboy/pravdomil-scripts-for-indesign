@@ -16,7 +16,7 @@ interface PravdomilExportOptions {
 
 function pravdomilHTMLExport(paramOpt?: Partial<PravdomilExportOptions>) {
   let opt: PravdomilExportOptions = paramOpt as PravdomilExportOptions;
-
+  
   if(!opt.document) {
     if(!app.documents.length) { return }
     opt.document = app.activeDocument
@@ -24,7 +24,7 @@ function pravdomilHTMLExport(paramOpt?: Partial<PravdomilExportOptions>) {
   if(!opt.settings) {
     pravdomilExportSettingsDialog(opt);
   }
-
+  
   let file = new File(opt.settings.outputFile);
   if(opt.settings.versioning) {
     file = new File(file.parent + "/" + versionString() + "/" + file.displayName);
