@@ -1,21 +1,21 @@
-function pravdomilExportOptimize(doc: Document, files: File[], opt: PravdomilExportOptions) {
-  if(!opt.keepFontFiles) {
-    let fontFile = new File(files[0].parent + '/' + files[0].nameWithoutExt() + '-web-resources/script/FontData.js');
+function pravdomilExportOptimize(opt: PravdomilExportOptions) {
+  if(!opt.settings.keepFontFiles) {
+    let fontFile = new File(opt.files[0].parent + '/' + opt.files[0].nameWithoutExt() + '-web-resources/script/FontData.js');
     if(fontFile.exists) { fontFile.remove() }
   }
   
-  if(opt.mergePages) {
+  if(opt.settings.mergePages) {
     let contents: string[] = [];
-    for(let i = 0; i < files.length; i++) {
-      contents.push(get_body(files[i]));
-      if(i > 0) { files[i].remove() }
+    for(let i = 0; i < opt.files.length; i++) {
+      contents.push(get_body(opt.files[i]));
+      if(i > 0) { opt.files[i].remove() }
     }
     
-    merge_file(doc, opt, files, contents)
+    merge_file(opt.document, opt, opt.files, contents)
   }
   else {
-    for(let i = 0; i < files.length; i++) {
-      optimize_file(doc, opt, files[i])
+    for(let i = 0; i < opt.files.length; i++) {
+      optimize_file(opt.document, opt, opt.files[i])
     }
   }
 }
