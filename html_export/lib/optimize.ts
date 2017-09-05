@@ -56,24 +56,25 @@ function pravdomilExportOptimizeFile(opt: PravdomilExportOptions, i: number) {
   saveFile(opt.files[i], content);
 }
 
-function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, file: File, content: string) {
-  let bg = getBgColor(opt.document).join(", ");
-  let extraStyle = "margin: auto; position: relative; background-color: rgb(" + bg + "); ";
-  return content.replace('style="', 'style="' + extraStyle)
+function pravdomilExportOptimizeBody(opt: PravdomilExportOptions, i: number, content: string) {
+  return pravdomilExportOptimizeDo(opt, i, content, /<body.*$/, opt.bodyFilters);
 }
 
 function pravdomilExportOptimizeHead(opt: PravdomilExportOptions, i: number, content: string) {
-  let regex = /<head>.*<\/head>/;
+  return pravdomilExportOptimizeDo(opt, i, content, /<head>.*<\/head>/, opt.headFilters);
+}
+
+function pravdomilExportOptimizeDo(opt: PravdomilExportOptions, i: number, content: string, regex: RegExp, filters: PravdomilExportFilter[]) {
   let match = content.match(regex);
-  
+
   if(match) {
-    let head = match[0];
+    let str = match[0];
     
-    for(let filter of opt.headFilters) {
-      head = filter(opt, i, head);
+    for(let filter of filters) {
+      str = filter(opt, i, str);
     }
     
-    return content.replace(regex, head)
+    return content.replace(regex, str)
   }
   
   return content;
