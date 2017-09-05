@@ -9,6 +9,7 @@ interface PravdomilExportOptions {
   document: Document;
   settings: PravdomilExportOptionsSettings;
   showSettingsDialog: boolean;
+  openAfterExport: boolean;
   file: File;
   files: File[];
 }
@@ -26,6 +27,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
       document,
       settings: {},
       showSettingsDialog: true,
+      openAfterExport: true,
       file: new File(),
       files: [],
     }
@@ -39,7 +41,8 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   
   optimize_html(opt.document, files, opt);
   
-  let currentFile = files[(app.activeWindow.activePage.name - 1) | 0];
-  
-  openFile(file);
+  if(opt.openAfterExport) {
+    let file = opt.files[(app.activeWindow.activePage.name - 1) | 0];
+    openFile(file);
+  }
 }
