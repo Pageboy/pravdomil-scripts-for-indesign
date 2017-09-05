@@ -82,7 +82,7 @@ function optimize_head(doc: Document, opt: PravdomilExportOptions, file: File, c
     '<script>function press(innerText) { var buttons = document.querySelectorAll(\'._idGenButton\'); for(var i = 0; i < buttons.length; i++) { var button = buttons[i]; var match = button.textContent.replace(/\\s/g, \'\') == innerText; if(match) { var evt = document.createEvent("Event"); evt.initEvent("ontouchend" in document.documentElement ? "touchend" : "mouseup", true, true); button.dispatchEvent(evt); console.log(\'fired\'); return; } } } </script>'
   ];
   
-  if(!opt.keepFontFiles) {
+  if(!opt.settings.keepFontFiles) {
     content = content.replace('<script src="' + file.nameWithoutExt() + '-web-resources/script/FontData.js" type="text/javascript"></script>', '')
   }
   
