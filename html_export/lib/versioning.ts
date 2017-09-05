@@ -10,9 +10,11 @@ function versioningString() {
 }
 
 function versioning(opt: PravdomilExportOptions) {
-  let file = new File(opt.settings.outputFile);
   if(opt.settings.versioning) {
-    file = new File(file.parent + "/" + versioningString() + "/" + file.displayName);
-    if(!file.parent.exists) { file.parent.create() }
+    opt.file = new File(opt.file.parent + "/" + versioningString() + "/" + opt.file.displayName);
+    
+    if(!opt.file.parent.exists) {
+      opt.file.parent.create();
+    }
   }
 }
