@@ -17,7 +17,7 @@ function pravdomilExportSettingsSave(doc: Document, settings: PravdomilExportOpt
   doc.insertLabel("pravdomil_html_export", label)
 }
 
-function pravdomilExportOptionsDialog(opt: PravdomilExportOptions): true | undefined {  
+function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | undefined {  
   opt.settings = pravdomilExportSettingsGet(opt.document);
   
   let dialog = new Window("dialog", "Pravdomil HTML Export");

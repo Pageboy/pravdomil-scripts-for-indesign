@@ -22,7 +22,7 @@ function pravdomilHTMLExport(paramOpt?: Partial<PravdomilExportOptions>) {
     opt.document = app.activeDocument
   }
   if(!opt.settings) {
-    pravdomilExportOptionsDialog(opt);
+    pravdomilExportSettingsDialog(opt);
   }
 
   let file = new File(opt.settings.outputFile);
