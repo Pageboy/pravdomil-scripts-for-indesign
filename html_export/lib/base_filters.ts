@@ -7,10 +7,11 @@ function pravdomilExportBaseFilters(opt: PravdomilExportOptions) {
 function pravdomilExportBaseHeadFilter(opt: PravdomilExportOptions, i: number, head: string) {
   head = head.replace(/<title>[^>]*<\/title>/, `<title>${opt.name}</title>`);
   
-  head = `<meta name="viewport" content="width=device-width" />` + head;
+  head = `\n\t\t<meta name="viewport" content="width=device-width" />` + head;
   
   // noinspection JSUnusedLocalSymbols
-  head += `<script>
+  head += `
+<script>
 function press(innerText) {
   var buttons = document.querySelectorAll('._idGenButton');
   for(var i = 0; i < buttons.length; i++) {
@@ -26,13 +27,16 @@ function press(innerText) {
     }
   }
 }
-</script>`;
+</script>
+`;
   
-  head += `<script>
+  head += `
+<script>
 window.top.isPreviewFile = function() { return {} };
 window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
-</script>`;
+</script>
+`;
   
   return head;
 }
