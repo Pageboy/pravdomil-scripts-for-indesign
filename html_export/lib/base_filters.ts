@@ -4,13 +4,13 @@ function pravdomilExportBaseFilters(opt: PravdomilExportOptions) {
 }
 
 // noinspection JSUnusedLocalSymbols
-function pravdomilExportBaseHeadFilter(opt: PravdomilExportOptions, i: number, head: string) {
-  head = head.replace(/<title>[^>]*<\/title>/, `<title>${opt.name}</title>`);
+function pravdomilExportBaseHeadFilter(opt: PravdomilExportOptions, i: number, str: string) {
+  str = str.replace(/<title>[^>]*<\/title>/, `<title>${opt.name}</title>`);
   
-  head = `\n\t\t<meta name="viewport" content="width=device-width" />` + head;
+  str = `\n\t\t<meta name="viewport" content="width=device-width" />` + str;
   
   // noinspection JSUnusedLocalSymbols
-  head += `
+  str += `
 <script>
 function press(innerText) {
   var buttons = document.querySelectorAll('._idGenButton');
@@ -29,19 +29,19 @@ function press(innerText) {
 }
 </script>`;
   
-  head += `
+  str += `
 <script>
 window.top.isPreviewFile = function() { return {} };
 window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
 </script>`;
   
-  head += `
+  str += `
 <style>
 html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
 </style>`;
   
-  return head;
+  return str;
 }
 
 // noinspection JSUnusedLocalSymbols
