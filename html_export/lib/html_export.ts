@@ -14,6 +14,7 @@ interface PravdomilExportOptions {
   file: File;
   files: File[];
   headFilters: ((opt: PravdomilExportOptions, i: number, head: string) => string)[];
+  bodyFilters: ((opt: PravdomilExportOptions, i: number, body: string) => string)[];
 }
 
 function pravdomilHTMLExport(options?: PravdomilExportOptions) {
@@ -35,6 +36,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
       file: new File(),
       files: [],
       headFilters: [],
+      bodyFilters: [],
     }
   }
   
