@@ -1,4 +1,6 @@
 interface PravdomilExportOptionsSettings {
+  [index: string]: any;
+  
   onlyCurrentPage?: boolean;
 
   mergePages?: boolean;
