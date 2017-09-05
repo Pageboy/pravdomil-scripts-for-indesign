@@ -10,6 +10,7 @@ interface PravdomilExportOptions {
   showSettingsDialog: boolean;
   openAfterExport: boolean;
   activePage: number;
+  name: string;
   file: File;
   files: File[];
 }
@@ -29,6 +30,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
       showSettingsDialog: true,
       openAfterExport: true,
       activePage: getActivePage(),
+      name: document.name.replace(/\.indd/, ""),
       file: new File(),
       files: [],
     }
