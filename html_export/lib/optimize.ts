@@ -11,7 +11,7 @@ function pravdomilExportOptimize(opt: PravdomilExportOptions) {
   else {
     let i = 0;
     for(let file of opt.files) {
-      pravdomilExportOptimizeFile(opt, i++);
+      pravdomilExportFilterFile(opt, i++);
     }
   }
 }
@@ -49,7 +49,7 @@ function get_body(file: File) {
   return div
 }
 
-function pravdomilExportOptimizeFile(opt: PravdomilExportOptions, i: number) {
+function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
   let content = readFile(opt.files[i]);
   content = pravdomilExportOptimizeHead(opt, i, content);
   content = pravdomilExportOptimizeBody(opt, i, content);
