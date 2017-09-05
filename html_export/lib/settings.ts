@@ -64,27 +64,45 @@ function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | unde
     opt.settings.mergePages = mergePages.value;
     opt.settings.versioning = versioning.value;
     opt.settings.keepFontFiles = keepFontFiles.value;
-    
-    let path;
-    let outputFile = new File(opt.settings.outputFile);
-    if(opt.settings.outputFile && outputFile.parent.exists) {
-      path = outputFile.saveDlg()
+
+    if(!pravdomilExportSettingsFileDialog(opt)) {
+      return;
     }
-    else if(opt.document.saved) {
-      path = new File(opt.document.fullName.fullName.replace(/\.indd$/, ".html")).saveDlg()
-    }
-    else {
-      path = File.saveDialog()
-    }
-    if(!path) {
-      return
-    }
-    let p = String(path);
-    if(p.substr(-5) !== ".html") { p += ".html" }
-    opt.settings.outputFile = p;
-    opt.file = new File(p);
     
     pravdomilExportSettingsSave(opt.document, opt.settings);
+    
     return true
   }
+}
+
+function pravdomilExportSettingsFileDialog(opt: PravdomilExportOptions): true | undefined {
+  let path: File;
+  
+  if(opt.settings.outputFile) {
+    let file = new File(opt.settings.outputFile);
+    if(file.parent.exists) {
+      path = file.saveDlg()
+    }
+    else {
+      opt.settings.outputFile = "";
+      return pravdomilExportSettingsFileDialog(opt);
+    }
+  }
+  else if(opt.document.saved) {
+    path = new File(opt.document.fullName.fullName.replace(/\.indd$/, ".html")).saveDlg()
+  }
+  else {
+    path = File.saveDialog()
+  }
+  
+  if(!path) {
+    return;
+  }
+  
+  let p = String(path);
+  if(p.substr(-5) !== ".html") { p += ".html" }
+  opt.settings.outputFile = p;
+  opt.file = new File(p);
+  
+  return true;
 }
