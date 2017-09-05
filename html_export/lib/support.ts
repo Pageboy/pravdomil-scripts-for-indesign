@@ -12,6 +12,16 @@ function getBgColor(document: Document) {
   return [ Math.round(rgb[0]), Math.round(rgb[1]), Math.round(rgb[2]) ]
 }
 
+function trace(obj: any) {
+  let out = obj + "\n";
+  
+  for(let key in obj) {
+    out += key + "\t\t" + obj[key] + "\n"
+  }
+  
+  alert(out);
+}
+
 function getActivePage() {
   if(app.activeWindow instanceof LayoutWindow) {
     let value = parseInt(app.activeWindow.activePage.name);
