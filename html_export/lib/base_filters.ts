@@ -1,6 +1,6 @@
 function pravdomilExportBaseFilters(opt: PravdomilExportOptions) {
   opt.headFilters.push(pravdomilExportBaseHeadFilter);
-  opt.headFilters.push(pravdomilExportBaseBodyFilter);
+  opt.bodyFilters.push(pravdomilExportBaseBodyFilter);
 }
 
 // noinspection JSUnusedLocalSymbols
