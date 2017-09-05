@@ -13,6 +13,7 @@ interface PravdomilExportOptions {
   name: string;
   file: File;
   files: File[];
+  headFilters: ((opt: PravdomilExportOptions, i: number, head: string) => string)[];
 }
 
 function pravdomilHTMLExport(options?: PravdomilExportOptions) {
@@ -33,6 +34,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
       name: document.name.replace(/\.indd/, ""),
       file: new File(),
       files: [],
+      headFilters: [],
     }
   }
   
