@@ -33,7 +33,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
     return;
   }
   
-  versioning(opt);
+  pravdomilExportVersioning(opt);
   
   let exportPref = opt.document.htmlFXLExportPreferences;
   if(opt.settings.onlyCurrentPage) {
