@@ -9,6 +9,7 @@ File.prototype.nameWithoutExt = function() {
 interface String {
   trim(): string;
   padStart(targetLength: number, padString?: string): string;
+  padEnd(targetLength: number, padString?: string): string;
   repeat(count: number): string;
 }
 
@@ -26,6 +27,19 @@ String.prototype.padStart = function(targetLength: number, padString = " ") {
       padString += padString.repeat(targetLength / padString.length)
     }
     return padString.slice(0, targetLength) + String(this)
+  }
+};
+
+String.prototype.padEnd = function padEnd(targetLength: number, padString = " ") {
+  if (this.length > targetLength) {
+    return String(this);
+  }
+  else {
+    targetLength = targetLength - this.length;
+    if(targetLength > padString.length) {
+      padString += padString.repeat(targetLength / padString.length);
+    }
+    return String(this) + padString.slice(0, targetLength);
   }
 };
 
