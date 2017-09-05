@@ -19,8 +19,9 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
   }
   else {
     if(!app.documents.length) { return }
+    let document = app.activeDocument;
     opt = {
-      document: app.activeDocument,
+      document,
       settings: {},
       showSettingsDialog: true,
     }
