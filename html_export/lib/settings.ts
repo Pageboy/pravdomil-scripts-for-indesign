@@ -9,7 +9,9 @@ function pravdomilExportSettingsGet(doc: Document, settings: { [index: string]: 
   let data = myJSONParse(label);
   if(typeof data == "object") {
     for(let key in data) {
-      settings[key] = data[key];
+      if(data.hasOwnProperty(key)) {
+        settings[key] = data[key];
+      }
     }
   }
 }
