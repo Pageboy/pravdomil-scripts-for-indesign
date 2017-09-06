@@ -12,10 +12,10 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
   else {
     let i = 0;
     for(let file of opt.files) {
-      let content = readFile(opt.files[i]);
+      let content = readFile(file);
       content = pravdomilExportFilterHead(opt, i, content);
       content = pravdomilExportFilterBody(opt, i, content);
-      saveFile(opt.files[i], content);
+      saveFile(file, content);
     }
   }
 }
