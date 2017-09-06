@@ -4,11 +4,14 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
     let i = -1;
     for(let file of opt.files) {
       i++;
-      let content = readFile(file);
-
-      let body = pravdomilExportFilterBody(opt, i, content, true);
-      if(i > 0) { file.remove() }
+      if(i == 0) {
+        continue;
+      }
       
+      let content = readFile(file);
+      file.remove();
+      
+      let body = pravdomilExportFilterBody(opt, i, content, true);
       bodies.push(body.substr(6));
     }
     opt.files.splice(1);
@@ -16,8 +19,8 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
     let file = opt.file;
     let content = readFile(file);
     
-    content = pravdomilExportFilterHead(opt, 0, content, true);
-    
+    content = pravdomilExportFilterHead(opt, 0, content);
+    content = pravdomilExportFilterBody(opt, 0, content);
     content += bodies.join("");
     
     saveFile(file, content);
