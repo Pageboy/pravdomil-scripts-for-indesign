@@ -7,6 +7,7 @@
 //@include "./lib/export.js"
 //@include "./lib/filter.js"
 //@include "./lib/keep_font.js"
+//@include "./lib/rembased.js"
 //@include "./lib/base_filters.js"
 
 app.doScript(function () {

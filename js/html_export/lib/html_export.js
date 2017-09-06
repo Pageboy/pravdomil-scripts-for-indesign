@@ -31,6 +31,7 @@ function pravdomilHTMLExport(options) {
         return;
     }
     pravdomilExportKeepFontFiles(opt);
+    pravdomilExportRembasedDebug(opt);
     pravdomilExportBaseFilters(opt);
     pravdomilExportFilterFiles(opt);
     if (opt.openAfterExport) {

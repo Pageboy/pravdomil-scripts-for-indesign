@@ -52,6 +52,8 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
 
   pravdomilExportKeepFontFiles(opt);
   
+  pravdomilExportRembasedDebug(opt);
+
   pravdomilExportBaseFilters(opt);
   
   pravdomilExportFilterFiles(opt);
