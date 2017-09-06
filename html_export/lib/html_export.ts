@@ -60,7 +60,7 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
     let index = opt.activePage != undefined ? opt.activePage : 0;
     index = Math.min(index, opt.files.length - 1);
     let file = opt.files[index];
-    if(!file || file.exists) {
+    if(!file) {
       alert("Export failed\nOutput file not found in:\n" + file);
     }
     else {

@@ -37,7 +37,7 @@ function pravdomilHTMLExport(options) {
         var index = opt.activePage != undefined ? opt.activePage : 0;
         index = Math.min(index, opt.files.length - 1);
         var file = opt.files[index];
-        if (!file || file.exists) {
+        if (!file) {
             alert("Export failed\nOutput file not found in:\n" + file);
         }
         else {
