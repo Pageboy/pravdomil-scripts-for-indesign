@@ -11,7 +11,7 @@ function pravdomilExportVersioningString() {
 
 function pravdomilExportVersioning(opt: PravdomilExportOptions) {
   if(opt.settings.versioning) {
-    opt.file = new File(opt.file.parent + "/" + pravdomilExportVersioningString() + "/" + opt.file.displayName);
+    opt.file = new File(opt.file.parent + "/" + pravdomilExportVersioningString() + "/" + opt.file.name);
     
     if(!opt.file.parent.exists) {
       opt.file.parent.create();
