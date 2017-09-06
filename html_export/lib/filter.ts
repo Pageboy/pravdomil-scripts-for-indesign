@@ -18,6 +18,8 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
       content = pravdomilExportFilterBody(opt, i, content);
       
       saveFile(file, content);
+      
+      i++;
     }
   }
 }
