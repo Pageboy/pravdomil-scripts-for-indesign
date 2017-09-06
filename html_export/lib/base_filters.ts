@@ -10,8 +10,7 @@ function pravdomilExportBaseHeadFilter(opt: PravdomilExportOptions, i: number, s
   str = `\n\t\t<meta name="viewport" content="width=device-width" />` + str;
   
   // noinspection JSUnusedLocalSymbols
-  str += `
-<script>
+  str += `<script>
 function press(innerText) {
   var buttons = document.querySelectorAll('._idGenButton');
   for(var i = 0; i < buttons.length; i++) {
@@ -27,10 +26,10 @@ function press(innerText) {
     }
   }
 }
-</script>`;
+</script>
+`;
   
-  str += `
-<script>
+  str += `<script>
 window.top.isPreviewFile = function() { return {} };
 window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
@@ -42,7 +41,8 @@ if(typeof RegisterInteractiveHandlers == "function") {
   str += `
 <style>
 html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
-</style>`;
+</style>
+`;
   
   return str;
 }
