@@ -24,16 +24,16 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
     saveFile(file, content);
   }
   else {
-    let i = 0;
+    let i = -1;
     for(let file of opt.files) {
+      i++;
+      
       let content = readFile(file);
       
       content = pravdomilExportFilterHead(opt, i, content);
       content = pravdomilExportFilterBody(opt, i, content);
       
       saveFile(file, content);
-      
-      i++;
     }
   }
 }
