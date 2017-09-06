@@ -2,6 +2,7 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
   if(opt.settings.mergePages) {
     let contents: string[] = [];
     for(let i = 0; i < opt.files.length; i++) {
+      let body = pravdomilExportFilterBody(opt, i, content, true);
       contents.push(get_body(opt.files[i]));
       if(i > 0) { opt.files[i].remove() }
     }
@@ -52,15 +53,15 @@ function get_body(file: File) {
   return div
 }
 
-function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportDoFilter(opt, i, content, ['<body'], opt.bodyFilters);
+function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string, returnFilteredPart = false) {
+  return pravdomilExportDoFilter(opt, i, content, ['<body'], opt.bodyFilters, returnFilteredPart);
 }
 
-function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string) {
-  return pravdomilExportDoFilter(opt, i, content, ['<head>', '</head>'], opt.headFilters);
+function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string, returnFilteredPart = false) {
+  return pravdomilExportDoFilter(opt, i, content, ['<head>', '</head>'], opt.headFilters, returnFilteredPart);
 }
 
-function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, match: string[], filters: PravdomilExportFilter[]) {
+function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, match: string[], filters: PravdomilExportFilter[], returnFilteredPart = false) {
   let start = content.indexOf(match[0]);
   if(start == -1) {
     return content;
@@ -80,7 +81,10 @@ function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content
     str = filter(opt, i, str);
   }
   
-  if(end == -1) {
+  if(returnFilteredPart) {
+    return str;
+  }
+  else if(end == -1) {
     return content.substr(0, start) + str;
   }
   else {
