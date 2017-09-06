@@ -11,7 +11,10 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
   else {
     let i = 0;
     for(let file of opt.files) {
-      pravdomilExportFilterFile(opt, i++);
+      let content = readFile(opt.files[i]);
+      content = pravdomilExportFilterHead(opt, i, content);
+      content = pravdomilExportFilterBody(opt, i, content);
+      saveFile(opt.files[i], content);
     }
   }
 }
@@ -47,13 +50,6 @@ function get_body(file: File) {
   let div = "<div" + content.substr(start + 5, end - start - 5) + "</div>";
   div = div.replace('style="', 'style="margin: auto; position: relative; ');
   return div
-}
-
-function pravdomilExportFilterFile(opt: PravdomilExportOptions, i: number) {
-  let content = readFile(opt.files[i]);
-  content = pravdomilExportFilterHead(opt, i, content);
-  content = pravdomilExportFilterBody(opt, i, content);
-  saveFile(opt.files[i], content);
 }
 
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string) {
