@@ -36,10 +36,10 @@ window.top.onFrameDOMLoaded = function() { return true };
 if(typeof RegisterInteractiveHandlers == "function") {
   document.addEventListener("load", RegisterInteractiveHandlers);
 }
-</script>`;
+</script>
+`;
   
-  str += `
-<style>
+  str += `<style>
 html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
 </style>
 `;
