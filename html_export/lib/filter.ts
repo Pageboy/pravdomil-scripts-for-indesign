@@ -48,14 +48,14 @@ function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], c
 }
 
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string, returnFilteredPart = false) {
-  return pravdomilExportDoFilter(opt, i, content, ['<body'], opt.bodyFilters, returnFilteredPart);
+  return pravdomilExportFilterDo(opt, i, content, ['<body'], opt.bodyFilters, returnFilteredPart);
 }
 
 function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, content: string, returnFilteredPart = false) {
-  return pravdomilExportDoFilter(opt, i, content, ['<head>', '</head>'], opt.headFilters, returnFilteredPart);
+  return pravdomilExportFilterDo(opt, i, content, ['<head>', '</head>'], opt.headFilters, returnFilteredPart);
 }
 
-function pravdomilExportDoFilter(opt: PravdomilExportOptions, i: number, content: string, match: string[], filters: PravdomilExportFilter[], returnFilteredPart = false) {
+function pravdomilExportFilterDo(opt: PravdomilExportOptions, i: number, content: string, match: string[], filters: PravdomilExportFilter[], returnFilteredPart = false) {
   let start = content.indexOf(match[0]);
   if(start == -1) {
     return content;
