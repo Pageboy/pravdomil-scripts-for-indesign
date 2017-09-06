@@ -12,8 +12,16 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
       
       i++;
     }
+    opt.files.splice(1);
     
-    merge_file(opt.document, opt, opt.files, contents)
+    let file = opt.file;
+    let content = readFile(file);
+    
+    content = pravdomilExportFilterHead(opt, 0, content, true);
+    
+    content += bodies.join("");
+    
+    saveFile(file, content);
   }
   else {
     let i = 0;
@@ -28,23 +36,6 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
       i++;
     }
   }
-}
-
-function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], contents: string[]) {
-  let file = files[0];
-  file.lineFeed = "Unix";
-  file.encoding = "UTF-8";
-  file.open("e");
-  
-  let content = file.read();
-  content = pravdomilExportFilterHead(opt, file, content);
-  content = content.substr(0, content.indexOf("<body"));
-  content += '<body onload="typeof RegisterInteractiveHandlers==\'function\'&&RegisterInteractiveHandlers()" style="background-color: rgb(' + getBgColor(doc).join(', ') + ');">';
-  content += contents.join("");
-  
-  file.seek(0);
-  file.write(content);
-  file.close()
 }
 
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string, returnFilteredPart = false) {
