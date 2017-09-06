@@ -47,22 +47,6 @@ function merge_file(doc: Document, opt: PravdomilExportOptions, files: File[], c
   file.close()
 }
 
-function get_body(file: File) {
-  file.lineFeed = "Unix";
-  file.encoding = "UTF-8";
-  file.open("r");
-  
-  let content = file.read();
-  file.close();
-  
-  let start = content.indexOf("<body");
-  let end = content.lastIndexOf("</body>");
-  
-  let div = "<div" + content.substr(start + 5, end - start - 5) + "</div>";
-  div = div.replace('style="', 'style="margin: auto; position: relative; ');
-  return div
-}
-
 function pravdomilExportFilterBody(opt: PravdomilExportOptions, i: number, content: string, returnFilteredPart = false) {
   return pravdomilExportDoFilter(opt, i, content, ['<body'], opt.bodyFilters, returnFilteredPart);
 }
