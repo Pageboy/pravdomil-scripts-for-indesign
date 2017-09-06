@@ -53,6 +53,8 @@ function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | unde
   versioning.value = Boolean(opt.settings.versioning);
   let keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files") as RadioButton; // bug
   keepFontFiles.value = Boolean(opt.settings.keepFontFiles);
+  let rembasedDebug = optionsPanel.add("checkbox", undefined, "Rembased Debug") as RadioButton; // bug
+  rembasedDebug.value = Boolean(opt.settings.rembasedDebug);
   
   let group = dialog.add("group") as Group;
   group.alignment = "right";
@@ -64,7 +66,8 @@ function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | unde
     opt.settings.mergePages = mergePages.value;
     opt.settings.versioning = versioning.value;
     opt.settings.keepFontFiles = keepFontFiles.value;
-
+    opt.settings.rembasedDebug = rembasedDebug.value;
+    
     if(!pravdomilExportSettingsFileDialog(opt)) {
       return;
     }

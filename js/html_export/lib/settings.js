@@ -47,6 +47,8 @@ function pravdomilExportSettingsDialog(opt) {
     versioning.value = Boolean(opt.settings.versioning);
     var keepFontFiles = optionsPanel.add("checkbox", undefined, "Keep Font Files"); // bug
     keepFontFiles.value = Boolean(opt.settings.keepFontFiles);
+    var rembasedDebug = optionsPanel.add("checkbox", undefined, "Rembased Debug"); // bug
+    rembasedDebug.value = Boolean(opt.settings.rembasedDebug);
     var group = dialog.add("group");
     group.alignment = "right";
     group.add("button", undefined, "Cancel");
@@ -56,6 +58,7 @@ function pravdomilExportSettingsDialog(opt) {
         opt.settings.mergePages = mergePages.value;
         opt.settings.versioning = versioning.value;
         opt.settings.keepFontFiles = keepFontFiles.value;
+        opt.settings.rembasedDebug = rembasedDebug.value;
         if (!pravdomilExportSettingsFileDialog(opt)) {
             return;
         }
