@@ -50,7 +50,7 @@ html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
 // noinspection JSUnusedLocalSymbols
 function pravdomilExportBaseBodyFilter(opt: PravdomilExportOptions, i: number, str: string) {
   str = "<body>" + "<div" + str.substr(5);
-  str = str.substr(0, str.length - 18);
+  str = str.substr(0, str.length - 18) + "\n\t</div>";
   str = str.replace('style="', 'style="margin:auto;position:relative;');
   
   return str;
