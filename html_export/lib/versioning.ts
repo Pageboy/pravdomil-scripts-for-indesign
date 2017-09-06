@@ -17,6 +17,4 @@ function pravdomilExportVersioning(opt: PravdomilExportOptions) {
       opt.file.parent.create();
     }
   }
-  
-  return true;
 }
