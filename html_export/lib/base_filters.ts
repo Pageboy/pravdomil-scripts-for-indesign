@@ -34,7 +34,7 @@ window.top.isPreviewFile = function() { return {} };
 window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
 if(typeof RegisterInteractiveHandlers == "function") {
-  window.addEventListener("load", RegisterInteractiveHandlers);
+  document.addEventListener("DOMContentLoaded", RegisterInteractiveHandlers);
 }
 </script>
 `;
