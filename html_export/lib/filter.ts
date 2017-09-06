@@ -7,10 +7,9 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
       let content = readFile(file);
 
       let body = pravdomilExportFilterBody(opt, i, content, true);
-      bodies.push(body);
-
       if(i > 0) { file.remove() }
       
+      bodies.push(body.substr(6));
     }
     opt.files.splice(1);
     
