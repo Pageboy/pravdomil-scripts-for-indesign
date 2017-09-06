@@ -1,8 +1,9 @@
 function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
   if(opt.settings.mergePages) {
     let bodies: string[] = [];
-    let i = 0;
+    let i = -1;
     for(let file of opt.files) {
+      i++;
       let content = readFile(file);
 
       let body = pravdomilExportFilterBody(opt, i, content, true);
@@ -10,7 +11,6 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
 
       if(i > 0) { file.remove() }
       
-      i++;
     }
     opt.files.splice(1);
     
