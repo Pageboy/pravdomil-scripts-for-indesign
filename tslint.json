@@ -24,6 +24,7 @@
     "no-var-requires": false,
     "only-arrow-functions": false,
     "interface-over-type-literal": false,
-    "no-eval": false
+    "no-eval": false,
+    "forin": false
   }
 }
