@@ -11,5 +11,5 @@
 //@include "./lib/base_filters.js"
 
 app.doScript(function () {
-  pravdomilHTMLExport();
+    pravdomilHTMLExport();
 }, ScriptLanguage.JAVASCRIPT, [], UndoModes.ENTIRE_SCRIPT, "Pravdomil HTML Export");

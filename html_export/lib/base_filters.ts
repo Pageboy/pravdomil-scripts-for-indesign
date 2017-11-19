@@ -1,16 +1,16 @@
 function pravdomilExportBaseFilters(opt: PravdomilExportOptions) {
-  opt.headFilters.push(pravdomilExportBaseHeadFilter);
-  opt.bodyFilters.push(pravdomilExportBaseBodyFilter);
+    opt.headFilters.push(pravdomilExportBaseHeadFilter);
+    opt.bodyFilters.push(pravdomilExportBaseBodyFilter);
 }
 
 // noinspection JSUnusedLocalSymbols
 function pravdomilExportBaseHeadFilter(opt: PravdomilExportOptions, i: number, str: string) {
-  str = str.replace(/<title>[^>]*<\/title>/, `<title>${opt.name}</title>`);
-  
-  str = `\n\t\t<meta name="viewport" content="width=device-width" />` + str;
-  
-  // noinspection JSUnusedLocalSymbols
-  str += `<script>
+    str = str.replace(/<title>[^>]*<\/title>/, `<title>${opt.name}</title>`);
+    
+    str = `\n\t\t<meta name="viewport" content="width=device-width" />` + str;
+    
+    // noinspection JSUnusedLocalSymbols
+    str += `<script>
 function press(innerText) {
   var buttons = document.querySelectorAll('._idGenButton');
   for(var i = 0; i < buttons.length; i++) {
@@ -28,8 +28,8 @@ function press(innerText) {
 }
 </script>
 `;
-  
-  str += `<script>
+    
+    str += `<script>
 window.top.isPreviewFile = function() { return {} };
 window.top.shouldNavigate = function() { return true };
 window.top.onFrameDOMLoaded = function() { return true };
@@ -38,20 +38,20 @@ if(typeof RegisterInteractiveHandlers == "function") {
 }
 </script>
 `;
-  
-  str += `<style>
+    
+    str += `<style>
 html { background-color: rgb(${ getBgColor(opt.document).join(", ") }); }
 </style>
 `;
-  
-  return str;
+    
+    return str;
 }
 
 // noinspection JSUnusedLocalSymbols
 function pravdomilExportBaseBodyFilter(opt: PravdomilExportOptions, i: number, str: string) {
-  str = "<body>\n\t" + "<div" + str.substr(5);
-  str = str.substr(0, str.length - 18) + "\n\t</div>";
-  str = str.replace('style="', 'style="margin:auto;position:relative;');
-  
-  return str;
+    str = "<body>\n\t" + "<div" + str.substr(5);
+    str = str.substr(0, str.length - 18) + "\n\t</div>";
+    str = str.replace('style="', 'style="margin:auto;position:relative;');
+    
+    return str;
 }
