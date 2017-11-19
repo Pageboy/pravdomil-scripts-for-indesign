@@ -23,6 +23,7 @@
     "no-empty": false,
     "no-var-requires": false,
     "only-arrow-functions": false,
-    "interface-over-type-literal": false
+    "interface-over-type-literal": false,
+    "no-eval": false
   }
 }
