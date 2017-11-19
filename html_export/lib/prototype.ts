@@ -3,7 +3,7 @@ interface File {
 }
 
 File.prototype.nameWithoutExt = function() {
-    return this.name.replace(/\.[^.]+$/, "")
+    return this.name.replace(/\.[^.]+$/, "");
 };
 
 // noinspection JSUnusedGlobalSymbols
@@ -19,25 +19,25 @@ String.prototype.trim = function() {
 };
 
 String.prototype.padStart = function(targetLength: number, padString = " ") {
-    if(this.length > targetLength) {
-        return String(this)
-    }
-    else {
+    if (this.length > targetLength) {
+        return String(this);
+        
+    } else {
         targetLength = targetLength - this.length;
-        if(targetLength > padString.length) {
-            padString += padString.repeat(targetLength / padString.length)
+        if (targetLength > padString.length) {
+            padString += padString.repeat(targetLength / padString.length);
         }
-        return padString.slice(0, targetLength) + String(this)
+        return padString.slice(0, targetLength) + String(this);
     }
 };
 
 String.prototype.padEnd = function padEnd(targetLength: number, padString = " ") {
     if (this.length > targetLength) {
         return String(this);
-    }
-    else {
+        
+    } else {
         targetLength = targetLength - this.length;
-        if(targetLength > padString.length) {
+        if (targetLength > padString.length) {
             padString += padString.repeat(targetLength / padString.length);
         }
         return String(this) + padString.slice(0, targetLength);
@@ -46,7 +46,7 @@ String.prototype.padEnd = function padEnd(targetLength: number, padString = " ")
 
 String.prototype.repeat = function(count: number) {
     count = Math.floor(count);
-    let str = String(this);
+    const str = String(this);
     
     if (str.length == 0 || count == 0) {
         return "";

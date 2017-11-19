@@ -36,11 +36,11 @@ function pravdomilExportFilterFiles(opt) {
 }
 function pravdomilExportFilterBody(opt, i, content, returnFilteredPart) {
     if (returnFilteredPart === void 0) { returnFilteredPart = false; }
-    return pravdomilExportFilterDo(opt, i, content, ['<body'], opt.bodyFilters, returnFilteredPart);
+    return pravdomilExportFilterDo(opt, i, content, ["<body"], opt.bodyFilters, returnFilteredPart);
 }
 function pravdomilExportFilterHead(opt, i, content, returnFilteredPart) {
     if (returnFilteredPart === void 0) { returnFilteredPart = false; }
-    return pravdomilExportFilterDo(opt, i, content, ['<head>', '</head>'], opt.headFilters, returnFilteredPart);
+    return pravdomilExportFilterDo(opt, i, content, ["<head>", "</head>"], opt.headFilters, returnFilteredPart);
 }
 function pravdomilExportFilterDo(opt, i, content, match, filters, returnFilteredPart) {
     if (returnFilteredPart === void 0) { returnFilteredPart = false; }

@@ -3,10 +3,10 @@ interface PravdomilExportOptionsSettings {
 }
 
 function pravdomilExportKeepFontFiles(opt: PravdomilExportOptions) {
-    if(!opt.settings.keepFontFiles) {
-        let path = opt.file.parent + "/" + opt.file.nameWithoutExt() + "-web-resources/script/FontData.js";
-        let file = new File(path);
-        if(file.exists) {
+    if (!opt.settings.keepFontFiles) {
+        const path = opt.file.parent + "/" + opt.file.nameWithoutExt() + "-web-resources/script/FontData.js";
+        const file = new File(path);
+        if (file.exists) {
             file.remove();
         }
         
@@ -16,6 +16,6 @@ function pravdomilExportKeepFontFiles(opt: PravdomilExportOptions) {
 
 // noinspection JSUnusedLocalSymbols
 function pravdomilExportKeepFontFilesFilter(opt: PravdomilExportOptions, i: number, str: string) {
-    let r = /<script src="[^"]*-web-resources\/script\/FontData.js" type="text\/javascript"><\/script>\s*/;
+    const r = /<script src="[^"]*-web-resources\/script\/FontData.js" type="text\/javascript"><\/script>\s*/;
     return str.replace(r, "");
 }

@@ -17,17 +17,17 @@ interface PravdomilExportOptions {
     bodyFilters: PravdomilExportFilter[];
 }
 
-type PravdomilExportFilter = ((opt: PravdomilExportOptions, i: number, str: string) => string)
+type PravdomilExportFilter = ((opt: PravdomilExportOptions, i: number, str: string) => string);
 
 function pravdomilHTMLExport(options?: PravdomilExportOptions) {
     let opt: PravdomilExportOptions;
     
-    if(options) {
+    if (options) {
         opt = options;
-    }
-    else {
-        if(!app.documents.length) { return }
-        let document = app.activeDocument;
+        
+    } else {
+        if (!app.documents.length) { return; }
+        const document = app.activeDocument;
         opt = {
             document,
             settings: {},
@@ -39,16 +39,16 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
             files: [],
             headFilters: [],
             bodyFilters: [],
-        }
+        };
     }
     
     pravdomilExportSettingsDefaults(opt.settings);
     
-    if(opt.showSettingsDialog && !pravdomilExportSettingsDialog(opt)) { return; }
+    if (opt.showSettingsDialog && !pravdomilExportSettingsDialog(opt)) { return; }
     
     pravdomilExportVersioning(opt);
     
-    if(!pravdomilExport(opt)) { return; }
+    if (!pravdomilExport(opt)) { return; }
     
     pravdomilExportKeepFontFiles(opt);
     
@@ -58,14 +58,14 @@ function pravdomilHTMLExport(options?: PravdomilExportOptions) {
     
     pravdomilExportFilterFiles(opt);
     
-    if(opt.openAfterExport) {
+    if (opt.openAfterExport) {
         let index = opt.activePage != undefined ? opt.activePage : 0;
         index = Math.min(index, opt.files.length - 1);
-        let file = opt.files[index];
-        if(!file) {
+        const file = opt.files[index];
+        
+        if (!file) {
             alert("Export failed\nOutput file not found in:\n" + file);
-        }
-        else {
+        } else {
             openFile(file);
         }
     }

@@ -27,18 +27,18 @@ function getActivePage() {
     }
 }
 function readFile(file) {
-    file.lineFeed = 'Unix';
-    file.encoding = 'UTF-8';
-    file.open('r');
+    file.lineFeed = "Unix";
+    file.encoding = "UTF-8";
+    file.open("r");
     file.seek(0);
     var content = file.read();
     file.close();
     return content;
 }
 function saveFile(file, content) {
-    file.lineFeed = 'Unix';
-    file.encoding = 'UTF-8';
-    file.open('w');
+    file.lineFeed = "Unix";
+    file.encoding = "UTF-8";
+    file.open("w");
     file.seek(0);
     file.write(content);
     file.close();

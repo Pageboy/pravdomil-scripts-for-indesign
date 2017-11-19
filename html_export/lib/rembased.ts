@@ -3,7 +3,7 @@ interface PravdomilExportOptionsSettings {
 }
 
 function pravdomilExportRembasedDebug(opt: PravdomilExportOptions) {
-    if(opt.settings.rembasedDebug) {
+    if (opt.settings.rembasedDebug) {
         opt.headFilters.push(pravdomilExportRembasedDebugFilter);
     }
 }
