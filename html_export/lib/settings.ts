@@ -1,5 +1,5 @@
 function pravdomilExportSettingsDefaults(settings: PravdomilExportOptionsSettings) {
-    if (settings.keepFontFiles == undefined) {
+    if (settings.keepFontFiles === undefined) {
         settings.keepFontFiles = true;
     }
 }
@@ -7,7 +7,7 @@ function pravdomilExportSettingsDefaults(settings: PravdomilExportOptionsSetting
 function pravdomilExportSettingsGet(doc: Document, settings: { [index: string]: any }) {
     const label = doc.extractLabel("pravdomil_html_export");
     const data = myJSONParse(label);
-    if (typeof data == "object") {
+    if (typeof data === "object") {
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
                 settings[key] = data[key];
@@ -61,7 +61,7 @@ function pravdomilExportSettingsDialog(opt: PravdomilExportOptions): true | unde
     group.add("button", undefined, "Cancel");
     group.add("button", undefined, "OK");
     
-    if (dialog.show() == 1) {
+    if (dialog.show() === 1) {
         opt.settings.onlyCurrentPage = onlyCurrentPage.value;
         opt.settings.mergePages = mergePages.value;
         opt.settings.versioning = versioning.value;

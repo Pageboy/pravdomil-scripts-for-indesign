@@ -6,7 +6,7 @@ function pravdomilExportFilterFiles(opt) {
         for (var _i = 0, _a = opt.files; _i < _a.length; _i++) {
             var file_1 = _a[_i];
             i++;
-            if (i == 0) {
+            if (i === 0) {
                 continue;
             }
             var content_1 = readFile(file_1);
@@ -45,12 +45,12 @@ function pravdomilExportFilterHead(opt, i, content, returnFilteredPart) {
 function pravdomilExportFilterDo(opt, i, content, match, filters, returnFilteredPart) {
     if (returnFilteredPart === void 0) { returnFilteredPart = false; }
     var start = content.indexOf(match[0]);
-    if (start == -1) {
+    if (start === -1) {
         return content;
     }
     var end = content.indexOf(match[1]);
     var str;
-    if (end == -1) {
+    if (end === -1) {
         str = content.substr(start);
     }
     else {
@@ -63,7 +63,7 @@ function pravdomilExportFilterDo(opt, i, content, match, filters, returnFiltered
     if (returnFilteredPart) {
         return str;
     }
-    else if (end == -1) {
+    else if (end === -1) {
         return content.substr(0, start) + str;
     }
     else {

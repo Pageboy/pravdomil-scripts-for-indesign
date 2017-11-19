@@ -34,7 +34,7 @@ String.prototype.padEnd = function padEnd(targetLength, padString) {
 String.prototype.repeat = function (count) {
     count = Math.floor(count);
     var str = String(this);
-    if (str.length == 0 || count == 0) {
+    if (str.length === 0 || count === 0) {
         return "";
     }
     var rpt = "";

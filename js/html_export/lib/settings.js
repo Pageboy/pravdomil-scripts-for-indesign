@@ -1,13 +1,13 @@
 "use strict";
 function pravdomilExportSettingsDefaults(settings) {
-    if (settings.keepFontFiles == undefined) {
+    if (settings.keepFontFiles === undefined) {
         settings.keepFontFiles = true;
     }
 }
 function pravdomilExportSettingsGet(doc, settings) {
     var label = doc.extractLabel("pravdomil_html_export");
     var data = myJSONParse(label);
-    if (typeof data == "object") {
+    if (typeof data === "object") {
         for (var key in data) {
             if (data.hasOwnProperty(key)) {
                 settings[key] = data[key];
@@ -53,7 +53,7 @@ function pravdomilExportSettingsDialog(opt) {
     group.alignment = "right";
     group.add("button", undefined, "Cancel");
     group.add("button", undefined, "OK");
-    if (dialog.show() == 1) {
+    if (dialog.show() === 1) {
         opt.settings.onlyCurrentPage = onlyCurrentPage.value;
         opt.settings.mergePages = mergePages.value;
         opt.settings.versioning = versioning.value;

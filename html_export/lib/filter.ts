@@ -4,7 +4,7 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
         let i = -1;
         for (const file of opt.files) {
             i++;
-            if (i == 0) {
+            if (i === 0) {
                 continue;
             }
             
@@ -50,14 +50,14 @@ function pravdomilExportFilterHead(opt: PravdomilExportOptions, i: number, conte
 
 function pravdomilExportFilterDo(opt: PravdomilExportOptions, i: number, content: string, match: string[], filters: PravdomilExportFilter[], returnFilteredPart = false) {
     const start = content.indexOf(match[0]);
-    if (start == -1) {
+    if (start === -1) {
         return content;
     }
     
     const end = content.indexOf(match[1]);
     
     let str;
-    if (end == -1) {
+    if (end === -1) {
         str = content.substr(start);
     } else {
         str = content.substr(start + match[0].length, end - start - match[0].length);
@@ -70,7 +70,7 @@ function pravdomilExportFilterDo(opt: PravdomilExportOptions, i: number, content
     if (returnFilteredPart) {
         return str;
         
-    } else if (end == -1) {
+    } else if (end === -1) {
         return content.substr(0, start) + str;
         
     } else {

@@ -48,7 +48,7 @@ String.prototype.repeat = function(count: number) {
     count = Math.floor(count);
     const str = String(this);
     
-    if (str.length == 0 || count == 0) {
+    if (str.length === 0 || count === 0) {
         return "";
     }
     

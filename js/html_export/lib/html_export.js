@@ -35,7 +35,7 @@ function pravdomilHTMLExport(options) {
     pravdomilExportBaseFilters(opt);
     pravdomilExportFilterFiles(opt);
     if (opt.openAfterExport) {
-        var index = opt.activePage != undefined ? opt.activePage : 0;
+        var index = opt.activePage !== undefined ? opt.activePage : 0;
         index = Math.min(index, opt.files.length - 1);
         var file = opt.files[index];
         if (!file) {
