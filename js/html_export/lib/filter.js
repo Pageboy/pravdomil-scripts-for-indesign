@@ -4,23 +4,23 @@ function pravdomilExportFilterFiles(opt) {
         var bodies = [];
         var i = -1;
         for (var _i = 0, _a = opt.files; _i < _a.length; _i++) {
-            var file_1 = _a[_i];
+            var file = _a[_i];
             i++;
             if (i === 0) {
                 continue;
             }
-            var content_1 = readFile(file_1);
-            file_1.remove();
-            var body = pravdomilExportFilterBody(opt, i, content_1, true);
+            var fileContent = readFile(file);
+            file.remove();
+            var body = pravdomilExportFilterBody(opt, i, fileContent, true);
             bodies.push(body.substr(6));
         }
         opt.files.splice(1);
-        var file = opt.file;
-        var content = readFile(file);
+        var masterFile = opt.file;
+        var content = readFile(masterFile);
         content = pravdomilExportFilterHead(opt, 0, content);
         content = pravdomilExportFilterBody(opt, 0, content);
         content += bodies.join("");
-        saveFile(file, content);
+        saveFile(masterFile, content);
     }
     else {
         var i = -1;

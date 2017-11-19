@@ -8,22 +8,22 @@ function pravdomilExportFilterFiles(opt: PravdomilExportOptions) {
                 continue;
             }
             
-            const content = readFile(file);
+            const fileContent = readFile(file);
             file.remove();
             
-            const body = pravdomilExportFilterBody(opt, i, content, true);
+            const body = pravdomilExportFilterBody(opt, i, fileContent, true);
             bodies.push(body.substr(6));
         }
         opt.files.splice(1);
         
-        const file = opt.file;
-        let content = readFile(file);
+        const masterFile = opt.file;
+        let content = readFile(masterFile);
         
         content = pravdomilExportFilterHead(opt, 0, content);
         content = pravdomilExportFilterBody(opt, 0, content);
         content += bodies.join("");
         
-        saveFile(file, content);
+        saveFile(masterFile, content);
         
     } else {
         let i = -1;
