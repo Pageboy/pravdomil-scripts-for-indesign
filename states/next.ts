@@ -1,7 +1,7 @@
-//@include "./lib.js"
+// @include "./lib.js"
 
-for(let item of app.selection as Object[]) {
-    if(item instanceof MultiStateObject) {
+for (const item of app.selection as object[]) {
+    if (item instanceof MultiStateObject) {
         switchObjectState(item, 1);
     }
 }
