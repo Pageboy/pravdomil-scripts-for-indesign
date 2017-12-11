@@ -4,7 +4,7 @@
     "outDir": "js",
     "noLib": true,
     "strict": true,
-    "types": ["types-for-adobe/ScriptUI", "types-for-adobe/InDesign/2015.3"]
+    "types": ["types-for-adobe/shared/ScriptUI", "types-for-adobe/InDesign/2015.3"]
   },
   "exclude": [
     "node_modules"
