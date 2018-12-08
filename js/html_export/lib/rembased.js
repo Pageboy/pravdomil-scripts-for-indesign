@@ -6,6 +6,6 @@ function pravdomilExportRembasedDebug(opt) {
 }
 // noinspection JSUnusedLocalSymbols
 function pravdomilExportRembasedDebugFilter(opt, i, str) {
-    str += "<script src=\"https://rawgit.com/pravdomil/rembased/master/js/rembased.js\" defer></script>\n";
+    str += "<script src=\"https://cdn.jsdelivr.net/gh/pravdomil/rembased@master/js/rembased.js\" defer></script>\n";
     return str;
 }
